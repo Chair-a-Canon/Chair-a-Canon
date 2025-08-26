@@ -1,4 +1,4 @@
-## Hi there 👋
+This is a repository to power my github pages where I plan to publish thoughts, ideas, opinionis and possible rants.
 
 <!--
 **Chair-a-Canon/Chair-a-Canon** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
