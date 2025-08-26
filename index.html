@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Q's Corner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f8f8;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 20px;
+        }
+
+        .site-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #8b0000;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+
+        .main-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .text-section {
+            flex: 2;
+        }
+
+        .description {
+            font-size: 1.4rem;
+            color: #2c2c2c;
+            font-style: italic;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .image-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .professor-illustration {
+            width: 350px;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+            overflow: hidden;
+            border: 3px solid #8b0000;
+        }
+
+        .professor-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .navigation {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            background-color: #8b0000;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-link:hover {
+            background-color: #a52a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid #8b0000;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .site-title {
+                font-size: 2.5rem;
+            }
+
+            .main-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .professor-illustration {
+                width: 300px;
+                height: auto;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .nav-link {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="site-title">Professor Q's Corner</h1>
+        </header>
+
+        <div class="main-content">
+            <div class="text-section">
+                <p class="description">
+                    Here have come to rest my thoughts, ideas, opinions and rants. Welcome to this humble corner of the digital realm where academic musings meet real-world observations, and where the intersection of scholarship and life unfolds in all its complexity.
+                </p>
+            </div>
+
+            <div class="image-section">
+                <div class="professor-illustration">
+                    <img src="professor-q-illustration.jpg" alt="Professor Q - A distinguished academic with glasses, gray pointed beard, and brown cardigan, sitting at his desk with books and a coffee cup" class="professor-image">
+                </div>
+            </div>
+        </div>
+
+        <nav class="navigation">
+            <div class="nav-links">
+                <a href="#thoughts" class="nav-link">Thoughts</a>
+                <a href="#ideas" class="nav-link">Ideas</a>
+                <a href="#opinions" class="nav-link">Opinions</a>
+                <a href="#rants" class="nav-link">Rants</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+
+        <footer class="footer">
+            <p>&copy; 2025 Professor Q's Corner. A place for academic discourse and contemplation.</p>
+        </footer>
+    </div>
+</body>
+</html>
