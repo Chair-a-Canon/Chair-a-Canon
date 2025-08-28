@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Professor Q's Corner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f8f8;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 20px;
+        }
+
+        .site-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #8b0000;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #8b0000;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 15px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-description {
+            font-size: 1.3rem;
+            color: #2c2c2c;
+            margin-bottom: 40px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.1);
+            border: 2px solid #8b0000;
+            margin-bottom: 40px;
+        }
+
+        .contact-label {
+            font-size: 1.2rem;
+            color: #8b0000;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .email-address {
+            font-size: 1.4rem;
+            color: #2c2c2c;
+            font-weight: bold;
+            background-color: #f8f8f8;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .email-link {
+            color: #8b0000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: #a52a2a;
+            text-decoration: underline;
+        }
+
+        .contact-note {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .navigation {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            background-color: #8b0000;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-link:hover {
+            background-color: #a52a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .nav-link.current {
+            background-color: #a52a2a;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid #8b0000;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .site-title {
+                font-size: 2.5rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .contact-info {
+                padding: 30px 20px;
+            }
+
+            .email-address {
+                font-size: 1.2rem;
+                padding: 12px 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .nav-link {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="site-title">Professor Q's Corner</h1>
+        </header>
+
+        <main>
+            <h2 class="page-title">Contact</h2>
+            
+            <div class="contact-content">
+                <p class="contact-description">
+                    I welcome thoughtful discourse and meaningful exchanges of ideas. Whether you have questions about the content shared on this site, wish to engage in academic discussion, or simply want to share your own perspectives on the topics I explore, I encourage you to reach out.
+                </p>
+
+                <div class="contact-info">
+                    <div class="contact-label">For questions regarding the content on this site, please email at:</div>
+                    <div class="email-address">
+                        <a href="mailto:2018ProfessorQ@gmail.com" class="email-link">2018ProfessorQ@gmail.com</a>
+                    </div>
+                    <div class="contact-note">
+                        I endeavor to respond to all thoughtful inquiries, though please allow some time for a considered reply.
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="navigation">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="thoughts.html" class="nav-link">Thoughts</a>
+                <a href="#ideas" class="nav-link">Ideas</a>
+                <a href="#opinions" class="nav-link">Opinions</a>
+                <a href="#rants" class="nav-link">Rants</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link current">Contact</a>
+            </div>
+        </nav>
+
+        <footer class="footer">
+            <p>&copy; 2025 Professor Q's Corner. A place for academic discourse and contemplation.</p>
+        </footer>
+    </div>
+</body>
+</html>
