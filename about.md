@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About Me
-permalink: /about
+permalink: /#about
 ---
 
 # About Me
@@ -39,4 +39,5 @@ This field never stops evolving, which is exactly what I love about it. I've com
 After almost 30 years in this business, I'm as excited about cybersecurity's future as I was when I first discovered network intrusion detection. The threats are more sophisticated, the technology more complex, but the fundamental mission remains the same—protecting what matters most while enabling innovation and growth.
 
 Whether you're looking for insights on building resilient security programs, developing the next generation of cybersecurity professionals, or just want to chat about the latest in threat intelligence, I'd love to connect.
+
 
