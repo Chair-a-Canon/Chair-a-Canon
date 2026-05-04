@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Professor Q's Corner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f8f8;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ── Header ─────────────────────────────── */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 20px;
+        }
+
+        .site-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #8b0000;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #8b0000;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-link:hover {
+            background-color: #a52a2a;
+            transform: translateY(-2px);
+        }
+
+        /* ── Section Navigation Bar ──────────────── */
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 50px;
+            padding: 18px 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .section-nav a {
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            border: 2px solid #8b0000;
+            color: #8b0000;
+            background: transparent;
+            transition: all 0.25s ease;
+        }
+
+        .section-nav a:hover,
+        .section-nav a.active {
+            background-color: #8b0000;
+            color: #fff;
+        }
+
+        /* ── Project Sections ────────────────────── */
+        .project-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 80px; /* offset for sticky nav */
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #8b0000;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8b0000;
+        }
+
+        .section-count {
+            font-size: 0.95rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        .section-description {
+            font-size: 1.05rem;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        /* ── Photo Grid ──────────────────────────── */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .photo-card {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.02);
+        }
+
+        .image-container {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background-color: #eee;
+            border: 8px solid #fff;
+            outline: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-comment-box {
+            padding: 10px 5px;
+            border-top: 1px solid #eee;
+        }
+
+        .photo-title {
+            font-size: 1.15rem;
+            color: #8b0000;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .photo-comment {
+            font-size: 0.95rem;
+            color: #555;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* ── Back to Top ─────────────────────────── */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #8b0000;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: background-color 0.2s ease;
+            z-index: 200;
+        }
+
+        .back-to-top:hover {
+            background-color: #a52a2a;
+        }
+
+        /* ── Footer ──────────────────────────────── */
+        .footer-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        /* ── Responsive ──────────────────────────── */
+        @media (max-width: 768px) {
+            .site-title { font-size: 2.2rem; }
+            .back-link {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+            .photo-grid { grid-template-columns: 1fr; }
+            .section-nav { position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <a href="#top" class="back-to-top" title="Back to top">↑</a>
+
+    <div class="container" id="top">
+        <header class="header">
+            <h1 class="site-title">Professor Q's Corner</h1>
+            <p class="page-subtitle">Gallery & Reflections</p>
+        </header>
+
+        <!-- ═══════════════════════════════════════════
+             SECTION NAVIGATION BAR
+             Add one <a> per section. The href must match
+             the id on that section's <section> tag below.
+        ════════════════════════════════════════════ -->
+        <nav class="section-nav" aria-label="Gallery sections">
+            <a href="#steampunk-gnomes">Steampunk Gnomes</a>
+            <a href="#christmas">Christmas Collection</a>
+            <!-- ADD MORE NAV LINKS HERE — copy the line above -->
+        </nav>
+
+
+        <!-- ═══════════════════════════════════════════
+             SECTION 1: STEAMPUNK GNOMES
+             id="steampunk-gnomes" must match the nav href
+        ════════════════════════════════════════════ -->
+        <section class="project-section" id="steampunk-gnomes">
+            <div class="section-header">
+                <h2 class="section-title">Steampunk Gnomes</h2>
+                <span class="section-count">8 pieces</span>
+            </div>
+            <p class="section-description">
+                A gallery of one of a kind, hand painted original creations — the gnome chess set.
+            </p>
+
+            <div class="photo-grid">
+
+                <!-- Photo 1 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/king.png" alt="The High King Figurine">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The High King</h3>
+                        <p class="photo-comment">All the regality of the gnomes</p>
+                    </div>
+                </article>
+
+                <!-- Photo 2 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/queen.png" alt="The Queen Figurine">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Verdant Queen</h3>
+                        <p class="photo-comment">A warrior Queen</p>
+                    </div>
+                </article>
+
+                <!-- Photo 3 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/violetBishop.png" alt="The Sage Bishop Figurine">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Violet Sage</h3>
+                        <p class="photo-comment">The Queen's Bishop</p>
+                    </div>
+                </article>
+
+                <!-- Photo 4 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Knight1.png" alt="The Steampunk Knight Figurine">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Iron Knight</h3>
+                        <p class="photo-comment">Steampunk Gnomes, who would have thought</p>
+                    </div>
+                </article>
+
+                <!-- Photo 5 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/rook1.png" alt="The Bronze Rook Figurine">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Gearwork Bastion</h3>
+                        <p class="photo-comment">A Steampunk Rook.</p>
+                    </div>
+                </article>
+
+                <!-- Photo 6 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/bishop1.png" alt="The Scholarly Bishop Figurine">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">Please don't call me "Rose"</h3>
+                        <p class="photo-comment">The King's Bishop</p>
+                    </div>
+                </article>
+
+                <!-- Photo 7 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Knight2.png" alt="The Axe Man Commeth">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Axe Man Commeth</h3>
+                        <p class="photo-comment">Steampunk Axe in one hand, threshing axe in the other</p>
+                    </div>
+                </article>
+
+                <!-- Photo 8 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/rook2.png" alt="Bookend Rooks">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">Bookend Rooks</h3>
+                        <p class="photo-comment"></p>
+                    </div>
+                </article>
+
+                <!-- Photo 9 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/thepawns.png" alt="The Pawns">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Pawns</h3>
+                        <p class="photo-comment">They Glow in the Dark</p>
+                    </div>
+                </article>
+
+            </div><!-- /photo-grid -->
+        </section>
+
+
+        <!-- ═══════════════════════════════════════════
+             SECTION 2: CHRISTMAS COLLECTION
+        ════════════════════════════════════════════ -->
+        <section class="project-section" id="christmas">
+            <div class="section-header">
+                <h2 class="section-title">Christmas Collection</h2>
+                <span class="section-count">7 pieces</span>
+            </div>
+            <p class="section-description">
+                Holiday-themed hand painted originals — where chess meets Christmas magic.
+            </p>
+
+            <div class="photo-grid">
+
+                <!-- Photo 1 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Christmas queen.jpeg" alt="The Christmas Queen">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Christmas Queen</h3>
+                        <p class="photo-comment">Complete with Cookies</p>
+                    </div>
+                </article>
+
+                <!-- Photo 2 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/TheKING.jpeg" alt="The true King of Christmas">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The King</h3>
+                        <p class="photo-comment">Santa holding The King</p>
+                    </div>
+                </article>
+
+                <!-- Photo 3 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Naughty list.jpeg" alt="The Naughty List">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Naughty List Bishop</h3>
+                        <p class="photo-comment">Somebody doesn't get along with others</p>
+                    </div>
+                </article>
+
+                <!-- Photo 4 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Nice list.jpeg" alt="The Nice List Bishop">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Nice List Bishop</h3>
+                        <p class="photo-comment">There is still good in this world</p>
+                    </div>
+                </article>
+
+                <!-- Photo 5 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Rudolph.jpeg" alt="The shiny nose knight">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">Rudolph, The Knight</h3>
+                        <p class="photo-comment">You could even say it glows</p>
+                    </div>
+                </article>
+
+                <!-- Photo 6 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Blitzen.jpeg" alt="The good knight Blitzen">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">Blitzen, The Knight</h3>
+                        <p class="photo-comment">They were African Swallows</p>
+                    </div>
+                </article>
+
+                <!-- Photo 7 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Christmas rook1.jpeg" alt="A Festive Tower">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The Christmas Tower Rook</h3>
+                        <p class="photo-comment">Tall and majestic</p>
+                    </div>
+                </article>
+
+                <!-- Photo 8 -->
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/Christmas rook2.jpeg" alt="The other Festive Tower">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">The other Christmas Tower Rook</h3>
+                        <p class="photo-comment">Beautiful Book Ends</p>
+                    </div>
+                </article>
+
+            </div><!-- /photo-grid -->
+        </section>
+
+
+        <!-- ═══════════════════════════════════════════
+             HOW TO ADD A NEW SECTION (e.g. Halloween)
+             ─────────────────────────────────────────
+             1. Copy the block below and paste it above
+                this comment.
+             2. Change the id (e.g. id="halloween").
+             3. Update the title, count, and description.
+             4. Add photo cards inside .photo-grid.
+             5. Add a matching nav link at the top:
+                <a href="#halloween">Halloween</a>
+        ════════════════════════════════════════════ -->
+        <!--
+        <section class="project-section" id="halloween">
+            <div class="section-header">
+                <h2 class="section-title">Halloween Collection</h2>
+                <span class="section-count">0 pieces</span>
+            </div>
+            <p class="section-description">
+                Spooky hand painted originals for the season.
+            </p>
+
+            <div class="photo-grid">
+
+                <article class="photo-card">
+                    <div class="image-container">
+                        <img src="images/YOUR_IMAGE.jpeg" alt="Description">
+                    </div>
+                    <div class="photo-comment-box">
+                        <h3 class="photo-title">Title Here</h3>
+                        <p class="photo-comment">Comment here</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+        -->
+
+
+        <footer class="footer-note">
+            <p>&copy; 2025 Professor Q's Corner. All artifacts and captures are part of the ongoing "Cognitive Sovereignty" series.</p>
+        </footer>
+    </div>
+
+    <script>
+        /* Highlight the active nav link as you scroll */
+        const navLinks = document.querySelectorAll('.section-nav a');
+        const sections = document.querySelectorAll('.project-section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`.section-nav a[href="#${entry.target.id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
