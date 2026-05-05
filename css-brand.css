@@ -1,0 +1,1535 @@
+/* ============================================================
+   COGNITIVE SOVEREIGNTY STUDIOS — BRAND STYLESHEET
+   Professor Q's Corner · chair-a-canon.github.io
+   ============================================================
+   
+   HOW TO USE THIS FILE
+   --------------------
+   1. Save this file as css-brand.css in your repository root
+      (same folder as index.html)
+   2. Add this ONE line inside the <head> of every HTML page,
+      after your existing <meta> tags:
+      
+      <link rel="stylesheet" href="css-brand.css">
+      
+   3. Also add this ONE line inside <head> to load Google Fonts:
+   
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+   
+   That's it. The rest happens automatically.
+   
+   ============================================================
+   TABLE OF CONTENTS
+   ============================================================
+   1.  CSS Custom Properties (Brand Tokens)
+   2.  CSS Reset & Base
+   3.  Typography System
+   4.  Global Layout & Structure  
+   5.  Navigation
+   6.  Hero / Page Header
+   7.  Body Content & Prose
+   8.  Gallery System
+   9.  Division Cards (CSS, Checkmate Curiosities, Traveling Drakes)
+  10.  Certificates & Provenance Labels
+  11.  Call-to-Action Buttons & Links
+  12.  Footer
+  13.  Division Overrides (per-page palette shifts)
+  14.  Utility Classes
+  15.  Responsive / Mobile
+   ============================================================ */
+
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES — BRAND TOKENS
+   These are the single source of truth for all brand colors,
+   fonts, and spacing. Change a value here and it updates
+   everywhere on every page automatically.
+   ============================================================ */
+
+:root {
+
+  /* --- COLOR: CSS Parent (Teal + Coral + Stone) --- */
+  --css-teal-deep:      #085041;   /* Primary maker's color — all three brands */
+  --css-teal-mid:       #1D9E75;   /* Brighter teal accent */
+  --css-teal-bright:    #5DCAA5;   /* Lightest teal, highlights */
+
+  --css-coral-blush:    #F5C4B3;   /* Warmth, skin tone, duck bill & feet */
+  --css-coral-mid:      #F0997B;   /* Vibrant coral accent */
+  --css-coral-deep:     #D85A30;   /* Bold, energetic coral */
+
+  --css-stone:          #D3D1C7;   /* Grounding neutral */
+  --css-parchment:      #F1EFE8;   /* Board squares, collector warmth */
+  --css-amber:          #EF9F27;   /* Accent — wood grain, warmth */
+  --css-amber-deep:     #633806;   /* Dark amber, mahogany depth */
+
+  --css-purple-soft:    #AFA9EC;   /* Traveling Drakes wing-tip, intellectual thread */
+  --css-purple-deep:    #3C3489;   /* Checkmate Curiosities accent */
+  --css-purple-darker:  #26215C;   /* Deepest purple, authority */
+
+  /* --- COLOR: Semantic Roles (parent brand defaults) --- */
+  --color-bg:           #0D1F1A;   /* Deep teal-black — page background */
+  --color-bg-secondary: #112920;   /* Slightly lighter — card backgrounds */
+  --color-bg-tertiary:  #163A2E;   /* Surface — subtle section backgrounds */
+  --color-surface:      #1C4A3A;   /* Elevated surfaces, nav */
+
+  --color-text-primary:   #F1EFE8; /* Parchment — primary text on dark bg */
+  --color-text-secondary: #C8C4B7; /* Muted — supporting text */
+  --color-text-tertiary:  #8A8880; /* Very muted — labels, metadata */
+  --color-text-accent:    #5DCAA5; /* Bright teal — links, highlights */
+  --color-text-coral:     #F0997B; /* Coral — secondary accent text */
+
+  --color-border:         rgba(8, 80, 65, 0.4);   /* Subtle teal border */
+  --color-border-light:   rgba(241, 239, 232, 0.1); /* Very subtle on dark */
+  --color-divider:        rgba(93, 202, 165, 0.2); /* Teal-tinted divider */
+
+  /* --- TYPOGRAPHY --- */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:    'Jost', 'Segoe UI', system-ui, sans-serif;
+  --font-cinzel:  'Cinzel', Georgia, serif;           /* CSS parent accent */
+  --font-playfair:'Playfair Display', Georgia, serif; /* Checkmate accent */
+  --font-caveat:  'Caveat', cursive;                  /* Traveling Drakes accent */
+
+  /* --- SPACING SCALE --- */
+  --space-xs:   0.25rem;   /* 4px  */
+  --space-sm:   0.5rem;    /* 8px  */
+  --space-md:   1rem;      /* 16px */
+  --space-lg:   1.5rem;    /* 24px */
+  --space-xl:   2rem;      /* 32px */
+  --space-2xl:  3rem;      /* 48px */
+  --space-3xl:  4rem;      /* 64px */
+  --space-4xl:  6rem;      /* 96px */
+
+  /* --- LAYOUT --- */
+  --max-width:        1100px;
+  --content-width:    720px;    /* Prose reading width */
+  --gallery-width:    960px;
+  --gutter:           var(--space-xl);
+
+  /* --- BORDERS & RADIUS --- */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  20px;
+
+  /* --- TRANSITIONS --- */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+
+  /* --- SHADOWS --- */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.5);
+  --shadow-teal: 0 4px 24px rgba(8, 80, 65, 0.4);
+  --shadow-glow: 0 0 40px rgba(29, 158, 117, 0.15);
+}
+
+
+/* ============================================================
+   2. CSS RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  min-height: 100vh;
+
+  /* Subtle texture — suggests the grain of a work surface */
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(29,158,117,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(8,80,65,0.12) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-text-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+a:hover {
+  color: var(--css-teal-bright);
+  opacity: 0.85;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-divider);
+  margin: var(--space-2xl) 0;
+}
+
+::selection {
+  background-color: var(--css-teal-deep);
+  color: var(--css-parchment);
+}
+
+
+/* ============================================================
+   3. TYPOGRAPHY SYSTEM
+   ============================================================ */
+
+/* --- Display: Cormorant Garamond (all brand names, headlines) --- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+/* --- Body: Jost --- */
+p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+  max-width: 68ch;
+}
+
+/* --- Accent typography classes --- */
+
+/* Cinzel — CSS parent, maker's mark, taglines */
+.font-cinzel,
+.maker-mark,
+.brand-tagline {
+  font-family: var(--font-cinzel);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--css-teal-mid);
+}
+
+/* Playfair Display — Checkmate Curiosities accent */
+.font-playfair,
+.piece-name,
+.collection-tagline {
+  font-family: var(--font-playfair);
+  font-style: italic;
+}
+
+/* Caveat — Traveling Drakes, sign text, handwritten feel */
+.font-caveat,
+.sign-text,
+.duck-tagline {
+  font-family: var(--font-caveat);
+  font-weight: 500;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+/* --- Typographic utilities --- */
+
+.text-muted    { color: var(--color-text-tertiary); }
+.text-accent   { color: var(--color-text-accent); }
+.text-coral    { color: var(--color-text-coral); }
+.text-parchment{ color: var(--css-parchment); }
+.text-amber    { color: var(--css-amber); }
+
+.label-caps {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.lead {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--color-text-primary);
+  font-weight: 300;
+  max-width: 60ch;
+}
+
+blockquote {
+  border-left: 3px solid var(--css-teal-mid);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-xl) 0;
+  background: var(--color-bg-tertiary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+blockquote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--color-text-primary);
+  max-width: none;
+  margin: 0;
+}
+
+/* Academic / prose styles for Thoughts section */
+.prose h2 { color: var(--color-text-primary); }
+.prose h3 { color: var(--css-teal-mid); }
+.prose p  { max-width: 70ch; }
+
+.prose ul, .prose ol {
+  padding-left: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.prose li {
+  font-family: var(--font-body);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-xs);
+}
+
+.prose strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* References / bibliography */
+.references {
+  border-top: 1px solid var(--color-divider);
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+}
+
+.references h3 {
+  font-family: var(--font-cinzel);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-top: 0;
+}
+
+.references p {
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+  line-height: 1.6;
+}
+
+/* License badge */
+.license-note {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+
+/* ============================================================
+   4. GLOBAL LAYOUT & STRUCTURE
+   ============================================================ */
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--gallery {
+  max-width: var(--gallery-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+main {
+  flex: 1;
+  padding-bottom: var(--space-4xl);
+}
+
+/* Section spacing */
+.section {
+  padding-block: var(--space-3xl);
+}
+
+.section--sm {
+  padding-block: var(--space-2xl);
+}
+
+.section--lg {
+  padding-block: var(--space-4xl);
+}
+
+/* Subtle section separator with teal glow */
+.section-divider {
+  text-align: center;
+  margin: var(--space-2xl) 0;
+  position: relative;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-cinzel);
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 80px);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-divider));
+}
+
+.section-divider::before { left: 0; }
+.section-divider::after  { right: 0; background: linear-gradient(to left, transparent, var(--color-divider)); }
+
+
+/* ============================================================
+   5. NAVIGATION
+   ============================================================ */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 31, 26, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-md);
+}
+
+.site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-nav__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+}
+
+.site-nav__brand-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0;
+  line-height: 1.1;
+  transition: color var(--transition-fast);
+}
+
+.site-nav__brand:hover .site-nav__brand-name {
+  color: var(--css-teal-bright);
+}
+
+.site-nav__brand-sub {
+  font-family: var(--font-cinzel);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--css-teal-mid);
+  line-height: 1;
+}
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.site-nav__links a {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding-block: var(--space-xs);
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.site-nav__links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--css-teal-mid);
+  transition: width var(--transition-base);
+}
+
+.site-nav__links a:hover {
+  color: var(--color-text-primary);
+}
+
+.site-nav__links a:hover::after {
+  width: 100%;
+}
+
+/* Division nav links — colored indicator */
+.site-nav__links a[data-division="checkmate"]  { --div-color: var(--css-purple-deep); }
+.site-nav__links a[data-division="drakes"]     { --div-color: var(--css-teal-mid); }
+
+.site-nav__links a[data-division]::after {
+  background: var(--div-color);
+}
+
+/* Back-to-home link (existing site pattern) */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  margin-bottom: var(--space-2xl);
+  transition: color var(--transition-fast);
+}
+
+.back-link::before {
+  content: '←';
+  transition: transform var(--transition-fast);
+}
+
+.back-link:hover {
+  color: var(--css-teal-mid);
+}
+
+.back-link:hover::before {
+  transform: translateX(-3px);
+}
+
+
+/* ============================================================
+   6. HERO / PAGE HEADER
+   ============================================================ */
+
+.page-hero {
+  padding-block: var(--space-4xl) var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow behind hero content */
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 70%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(29,158,117,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-hero__eyebrow {
+  font-family: var(--font-cinzel);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--css-teal-mid);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+/* Teal underline accent on hero title */
+.page-hero__title span {
+  position: relative;
+  display: inline-block;
+}
+
+.page-hero__title span::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--css-teal-mid), transparent);
+}
+
+.page-hero__subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  max-width: 55ch;
+  margin-bottom: var(--space-xl);
+}
+
+.page-hero__tagline {
+  font-family: var(--font-cinzel);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-md);
+  display: inline-block;
+}
+
+/* Profile image on home page */
+.page-hero__photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-teal);
+  margin-bottom: var(--space-xl);
+
+  /* Subtle teal ring */
+  outline: 4px solid transparent;
+  outline-offset: 3px;
+  transition: outline-color var(--transition-base);
+}
+
+.page-hero__photo:hover {
+  outline-color: rgba(29, 158, 117, 0.3);
+}
+
+
+/* ============================================================
+   7. BODY CONTENT & PROSE
+   ============================================================ */
+
+.content-section {
+  padding-block: var(--space-3xl);
+  border-top: 1px solid var(--color-border-light);
+}
+
+/* Article / essay layout — used on thoughts.html */
+.article-header {
+  padding-block: var(--space-3xl);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-2xl);
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: var(--space-sm);
+}
+
+.article-meta__date,
+.article-meta__type,
+.article-meta__read-time {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.article-meta__dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-text-tertiary);
+}
+
+/* Published thoughts list on thoughts.html */
+.thought-card {
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.thought-card__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  transition: color var(--transition-fast);
+}
+
+.thought-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.thought-card__title a:hover {
+  color: var(--css-teal-bright);
+}
+
+.thought-card__excerpt {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  max-width: 65ch;
+  margin-bottom: var(--space-md);
+}
+
+.thought-card__link {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--css-teal-mid);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.thought-card__link::after { content: '→'; }
+
+.thought-card__link:hover {
+  color: var(--css-teal-bright);
+  gap: var(--space-sm);
+}
+
+
+/* ============================================================
+   8. GALLERY SYSTEM
+   ============================================================ */
+
+/* Gallery navigation tabs (Steampunk Gnomes / Christmas / Halloween) */
+.gallery-nav {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.gallery-nav__link {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+}
+
+.gallery-nav__link:hover,
+.gallery-nav__link.is-active {
+  color: var(--css-teal-bright);
+  border-color: var(--css-teal-deep);
+  background: rgba(8, 80, 65, 0.2);
+}
+
+/* Collection header */
+.collection-header {
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-xl);
+}
+
+.collection-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.collection-header__tagline {
+  font-family: var(--font-playfair);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.collection-header__count {
+  font-family: var(--font-cinzel);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* Gallery grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+.gallery-grid--tight {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+/* Individual piece card */
+.piece-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  cursor: default;
+}
+
+.piece-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-teal);
+  border-color: rgba(29, 158, 117, 0.3);
+}
+
+.piece-card__image-wrap {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-bg-tertiary);
+  position: relative;
+}
+
+.piece-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.piece-card:hover .piece-card__image-wrap img {
+  transform: scale(1.04);
+}
+
+/* One-of-a-kind badge */
+.piece-card__image-wrap::after {
+  content: 'One of a Kind';
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  font-family: var(--font-cinzel);
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--css-parchment);
+  background: rgba(8, 80, 65, 0.85);
+  backdrop-filter: blur(4px);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(29,158,117,0.4);
+}
+
+.piece-card__body {
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+}
+
+.piece-card__name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.3;
+}
+
+.piece-card__role {
+  font-family: var(--font-cinzel);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--css-teal-mid);
+  margin-bottom: var(--space-sm);
+}
+
+.piece-card__desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Pawn grid — smaller cards for pawn collections */
+.pawn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-sm);
+}
+
+.pawn-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pawn-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.pawn-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.pawn-card__label {
+  padding: var(--space-sm);
+  font-family: var(--font-cinzel);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  text-align: center;
+}
+
+
+/* ============================================================
+   9. DIVISION CARDS (home page and studio page)
+   ============================================================ */
+
+.divisions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.division-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-decoration: none;
+  display: block;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent bar per division */
+.division-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--div-accent, var(--css-teal-mid));
+  transition: height var(--transition-base);
+}
+
+.division-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  border-color: rgba(255,255,255,0.08);
+}
+
+.division-card:hover::before {
+  height: 4px;
+}
+
+.division-card--checkmate { --div-accent: var(--css-purple-deep); }
+.division-card--drakes    { --div-accent: var(--css-teal-mid); }
+.division-card--analog    { --div-accent: var(--css-amber); }
+
+.division-card__eyebrow {
+  font-family: var(--font-cinzel);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.division-card__name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  line-height: 1.2;
+}
+
+.division-card__tagline {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-lg);
+}
+
+.division-card__link-text {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--css-teal-mid);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: gap var(--transition-fast);
+}
+
+.division-card__link-text::after { content: '→'; }
+.division-card:hover .division-card__link-text { gap: var(--space-sm); }
+
+
+/* ============================================================
+   10. CERTIFICATES & PROVENANCE LABELS
+   ============================================================ */
+
+/* Certificate of authenticity — to be used on individual piece pages */
+.certificate {
+  border: 1px solid var(--css-amber);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  background: var(--color-bg-secondary);
+  position: relative;
+  margin: var(--space-2xl) 0;
+}
+
+/* Double-rule border effect */
+.certificate::before {
+  content: '';
+  position: absolute;
+  inset: var(--space-sm);
+  border: 1px solid rgba(239, 159, 39, 0.25);
+  border-radius: calc(var(--radius-lg) - 4px);
+  pointer-events: none;
+}
+
+.certificate__header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(239, 159, 39, 0.2);
+}
+
+.certificate__title {
+  font-family: var(--font-cinzel);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--css-amber);
+  margin-bottom: var(--space-sm);
+}
+
+.certificate__piece-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.certificate__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.certificate__field-label {
+  font-family: var(--font-cinzel);
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xs);
+}
+
+.certificate__field-value {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.certificate__footer {
+  text-align: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(239, 159, 39, 0.2);
+}
+
+.certificate__maker-mark {
+  font-family: var(--font-cinzel);
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--css-teal-mid);
+}
+
+/* Specimen label — smaller version for gallery captions */
+.specimen-label {
+  display: inline-block;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--css-amber);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: var(--space-sm) var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.specimen-label__name {
+  font-family: var(--font-playfair);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  display: block;
+}
+
+.specimen-label__role {
+  font-family: var(--font-cinzel);
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+
+/* ============================================================
+   11. CALL-TO-ACTION BUTTONS & LINKS
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 0.6rem var(--space-lg);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+/* Primary — teal fill */
+.btn--primary {
+  background: var(--css-teal-deep);
+  color: var(--css-parchment);
+  border-color: var(--css-teal-deep);
+}
+
+.btn--primary:hover {
+  background: var(--css-teal-mid);
+  border-color: var(--css-teal-mid);
+  color: var(--color-bg);
+  box-shadow: 0 4px 16px rgba(29,158,117,0.3);
+}
+
+/* Secondary — outlined */
+.btn--secondary {
+  background: transparent;
+  color: var(--css-teal-mid);
+  border-color: var(--css-teal-deep);
+}
+
+.btn--secondary:hover {
+  background: rgba(8, 80, 65, 0.2);
+  border-color: var(--css-teal-mid);
+  color: var(--css-teal-bright);
+}
+
+/* Etsy link — amber accent */
+.btn--etsy {
+  background: transparent;
+  color: var(--css-amber);
+  border-color: rgba(239, 159, 39, 0.4);
+}
+
+.btn--etsy:hover {
+  background: rgba(239, 159, 39, 0.1);
+  border-color: var(--css-amber);
+}
+
+.btn--etsy::before {
+  content: '↗';
+  font-size: 0.75em;
+}
+
+/* Ghost — minimal */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+
+.btn--ghost:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-tertiary);
+}
+
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-2xl);
+  background: rgba(0,0,0,0.2);
+}
+
+.site-footer__inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--space-xl);
+}
+
+.site-footer__brand {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.site-footer__maker-mark {
+  font-family: var(--font-cinzel);
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--css-teal-mid);
+  margin-bottom: var(--space-md);
+}
+
+.site-footer__copyright {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  line-height: 1.5;
+}
+
+.site-footer__series-note {
+  font-family: var(--font-cinzel);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-xs);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+.site-footer__links a {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.site-footer__links a:hover {
+  color: var(--css-teal-mid);
+}
+
+
+/* ============================================================
+   13. DIVISION OVERRIDES — PER-PAGE PALETTE SHIFTS
+   
+   Add class="page--checkmate" to <body> on
+   checkmate-curiosities.html, and class="page--drakes"
+   on traveling-drakes.html. The CSS does the rest.
+   ============================================================ */
+
+/* Checkmate Curiosities — teal + parchment + deep purple */
+.page--checkmate {
+  --color-text-accent:   var(--css-purple-soft);
+  --color-divider:       rgba(60, 52, 137, 0.25);
+  --color-border:        rgba(60, 52, 137, 0.3);
+  --shadow-teal:         0 4px 24px rgba(60, 52, 137, 0.25);
+}
+
+.page--checkmate .site-nav__brand-sub,
+.page--checkmate .maker-mark,
+.page--checkmate .brand-tagline,
+.page--checkmate .certificate__maker-mark {
+  color: var(--css-purple-soft);
+}
+
+.page--checkmate .site-nav__links a::after {
+  background: var(--css-purple-deep);
+}
+
+.page--checkmate .piece-card__role {
+  color: var(--css-purple-soft);
+}
+
+/* Traveling Drakes — teal + coral + soft purple */
+.page--drakes {
+  --color-text-accent:   var(--css-coral-mid);
+  --color-divider:       rgba(240, 153, 123, 0.2);
+  --color-border:        rgba(240, 153, 123, 0.2);
+  --shadow-teal:         0 4px 24px rgba(213, 90, 48, 0.2);
+}
+
+.page--drakes .site-nav__brand-sub,
+.page--drakes .brand-tagline {
+  color: var(--css-coral-mid);
+}
+
+.page--drakes .site-nav__links a::after {
+  background: var(--css-coral-mid);
+}
+
+.page--drakes .sign-text {
+  color: var(--css-coral-blush);
+}
+
+.page--drakes .duck-tagline {
+  color: var(--css-coral-mid);
+}
+
+
+/* ============================================================
+   14. UTILITY CLASSES
+   ============================================================ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+.mt-sm  { margin-top: var(--space-sm); }
+.mt-md  { margin-top: var(--space-md); }
+.mt-lg  { margin-top: var(--space-lg); }
+.mt-xl  { margin-top: var(--space-xl); }
+.mt-2xl { margin-top: var(--space-2xl); }
+.mt-3xl { margin-top: var(--space-3xl); }
+
+.mb-sm  { margin-bottom: var(--space-sm); }
+.mb-md  { margin-bottom: var(--space-md); }
+.mb-lg  { margin-bottom: var(--space-lg); }
+.mb-xl  { margin-bottom: var(--space-xl); }
+.mb-2xl { margin-bottom: var(--space-2xl); }
+
+.flex          { display: flex; }
+.flex-col      { flex-direction: column; }
+.items-center  { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+.flex-wrap { flex-wrap: wrap; }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+}
+
+.text-center { text-align: center; }
+
+/* Coming soon placeholder */
+.coming-soon-note {
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3xl) var(--space-2xl);
+  text-align: center;
+  color: var(--color-text-tertiary);
+}
+
+.coming-soon-note .label-caps {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.coming-soon-note p {
+  max-width: 40ch;
+  margin-inline: auto;
+  font-size: 0.9rem;
+}
+
+
+/* ============================================================
+   15. RESPONSIVE / MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  :root {
+    --gutter: var(--space-md);
+  }
+
+  .site-nav__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .site-nav__links {
+    gap: var(--space-md);
+  }
+
+  .site-nav__links a {
+    font-size: 0.875rem;
+  }
+
+  .page-hero {
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .certificate__body {
+    grid-template-columns: 1fr;
+  }
+
+  .divisions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__links {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+
+}
+
+@media (max-width: 480px) {
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pawn-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-nav {
+    gap: var(--space-xs);
+  }
+
+  .gallery-nav__link {
+    font-size: 0.75rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+}
+
+/* Print styles — clean output for certificates */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .site-nav,
+  .site-footer,
+  .btn { display: none; }
+
+  .certificate {
+    border-color: #ccc;
+    background: white;
+  }
+
+  .certificate__title { color: #666; }
+  .certificate__piece-name { color: black; }
+}
+
+
+/* ============================================================
+   END OF CSS BRAND STYLESHEET
+   Cognitive Sovereignty Studios · Professor Q's Corner
+   Version 1.0
+   ============================================================ */
