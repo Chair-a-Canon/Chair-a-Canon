@@ -42,6 +42,20 @@
         gap: 30px;
         justify-items: center; /* Centers cards in their grid tracks */
     }
+    /* Centers the entire text block and the text inside it */
+.content-block.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the block itself */
+    text-align: center;  /* Centers the text inside the block */
+    margin: 0 auto;
+    max-width: 800px;    /* Prevents the text from stretching too wide */
+}
+
+.text-center.max-width-700 {
+    margin-left: auto;
+    margin-right: auto;
+}
 </style>
 </head>
 <body class="page--checkmate">
