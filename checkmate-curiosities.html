@@ -6,15 +6,43 @@
     <title>Checkmate Curiosities | Chess Art by Professor Q</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css-brand.css">
-    <style>
-        /* Specific override to ensure full visibility of chess piece images */
-        .piece-card__img-wrap img {
-            height: 320px; /* Consistent height for the gallery grid */
-            width: 100%;
-            object-fit: contain; /* Prevents cropping of 3D printed details */
-            background-color: var(--color-parchment); /* Soft background for transparent/cutout assets */
-        }
-    </style>
+<style>
+    /* 1. Constrain the Hero Image */
+    .hero--division .hero__image-wrap img {
+        max-height: 500px; /* Reduces size so it doesn't dominate the viewport */
+        width: auto;
+        margin: 0 auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    /* 2. Fix the "Squished" Alignment */
+    .content-block.container {
+        max-width: 900px; /* Standardizes width */
+        margin: 0 auto;   /* Centers the block */
+        padding: 40px 20px;
+        text-align: center; /* Aligns text to center for better readability */
+    }
+
+    .text-center.max-width-700 {
+        margin: 0 auto;
+        float: none; /* Ensures it's not floating right */
+    }
+
+    /* 3. Adjust Gallery Grid */
+    .gallery-grid.container {
+        display: block;
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .grid-three-col {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        justify-items: center; /* Centers cards in their grid tracks */
+    }
+</style>
 </head>
 <body class="page--checkmate">
 
