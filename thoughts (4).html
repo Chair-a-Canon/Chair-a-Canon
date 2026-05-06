@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thoughts · Professor Q's Corner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css-brand.css">
+  <style>
+    .site-nav { position:sticky;top:0;z-index:100;background:rgba(9,22,18,0.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(8,80,65,0.35); }
+    .site-nav__inner { display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin-inline:auto;padding:0.875rem 2rem;gap:2rem; }
+    .site-nav__brand { text-decoration:none;display:flex;flex-direction:column;gap:2px; }
+    .site-nav__brand-name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:400;color:#F1EFE8;line-height:1.1;transition:color 150ms ease; }
+    .site-nav__brand:hover .site-nav__brand-name { color:#5DCAA5; }
+    .site-nav__brand-sub { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75; }
+    .site-nav__links { display:flex;align-items:center;gap:1.75rem;list-style:none;flex-wrap:wrap; }
+    .site-nav__links a { font-family:'Jost',sans-serif;font-size:0.8rem;letter-spacing:0.04em;color:#8A8880;text-decoration:none;padding-bottom:2px;position:relative;transition:color 150ms ease; }
+    .site-nav__links a::after { content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#1D9E75;transition:width 250ms ease; }
+    .site-nav__links a:hover { color:#F1EFE8; }
+    .site-nav__links a:hover::after,.site-nav__links a.active::after { width:100%; }
+    .site-nav__links a.active { color:#F1EFE8; }
+
+    .page-wrap { max-width:780px;margin-inline:auto;padding:4rem 2rem 7rem; }
+
+    .hero-eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.18em;text-transform:uppercase;color:#1D9E75;margin-bottom:1rem;display:block; }
+    .hero-title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,5vw,3.5rem);font-weight:300;color:#F1EFE8;line-height:1.08;letter-spacing:-0.02em;margin-bottom:0.875rem; }
+    .hero-desc { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#8A8880;line-height:1.7;max-width:58ch;margin-bottom:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(93,202,165,0.12); }
+
+    .article-card { padding:3rem 0;border-bottom:1px solid rgba(241,239,232,0.07); }
+    .article-card:last-child { border-bottom:none; }
+
+    .card-meta { display:flex;align-items:center;gap:0.625rem;flex-wrap:wrap;margin-bottom:1rem; }
+    .card-date { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#8A8880; }
+    .card-dot { width:3px;height:3px;border-radius:50%;background:rgba(138,136,128,0.35); }
+    .card-type { font-family:'Jost',sans-serif;font-size:0.6875rem;color:#8A8880; }
+    .card-read { font-family:'Jost',sans-serif;font-size:0.6875rem;color:#1D9E75; }
+    .card-coauthor { width:100%;margin-top:0.125rem;font-family:'Jost',sans-serif;font-size:0.6875rem;font-style:italic;color:rgba(93,202,165,0.55); }
+
+    .card-title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:400;color:#F1EFE8;text-decoration:none;display:block;margin-bottom:1.125rem;line-height:1.2;transition:color 200ms ease; }
+    .card-title:hover { color:#5DCAA5; }
+
+    .card-summary { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.8;margin-bottom:1.5rem; }
+
+    .card-footer { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem; }
+    .card-link { font-family:'Jost',sans-serif;font-size:0.6875rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1D9E75;text-decoration:none;display:inline-flex;align-items:center;gap:0.375rem;transition:gap 150ms ease,color 150ms ease; }
+    .card-link::after { content:'→'; }
+    .card-link:hover { color:#5DCAA5;gap:0.625rem; }
+    .card-time { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(138,136,128,0.45); }
+
+    .site-footer { border-top:1px solid rgba(8,80,65,0.3);background:rgba(0,0,0,0.25); }
+    .site-footer__inner { max-width:1100px;margin-inline:auto;padding:2.5rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem; }
+    .footer-brand { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:#F1EFE8;margin-bottom:0.25rem; }
+    .footer-maker { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.75rem;display:block; }
+    .footer-copy { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880; }
+    .footer-series { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(138,136,128,0.4);margin-top:0.25rem;display:block; }
+    .footer-links { display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem; }
+    .footer-links a { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880;text-decoration:none;transition:color 150ms ease; }
+    .footer-links a:hover { color:#1D9E75; }
+
+    @media (max-width:600px) {
+      .page-wrap,.site-nav__inner { padding-inline:1.25rem; }
+      .site-footer__inner { grid-template-columns:1fr; }
+      .footer-links { align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand">
+        <span class="site-nav__brand-name">Professor Q's Corner</span>
+        <span class="site-nav__brand-sub">Cognitive Sovereignty Studios</span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="thoughts.html" class="active">Thoughts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="photos.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+    <header>
+      <span class="hero-eyebrow">Professor Q's Corner</span>
+      <h1 class="hero-title">Thoughts</h1>
+      <p class="hero-desc">Where academic inquiry meets the complexities of our digital age — extended reflections on consciousness, technology, and the human condition.</p>
+    </header>
+
+    <section aria-label="Published articles">
+
+      <article class="article-card">
+        <div class="card-meta">
+          <span class="card-date">August 2025</span>
+          <span class="card-dot"></span>
+          <span class="card-type">Essay · Manifesto</span>
+          <span class="card-dot"></span>
+          <span class="card-read">45-minute read</span>
+        </div>
+        <a href="cognitive-sovereignty.html" class="card-title">Cognitive Sovereignty: The Choice to Remain Human in the Age of AI</a>
+        <p class="card-summary">We are not observers of the AI transformation — we are embedded participants, whether we acknowledge it or not. This manifesto argues against the false binary of AI-as-savior versus AI-as-destroyer, and for something more demanding: conscious cognitive collaboration that preserves human agency while leveraging artificial intelligence as an amplifier rather than a replacement. The choice is not whether to engage with AI. The choice is whether you do so with your eyes open.</p>
+        <div class="card-footer">
+          <a href="cognitive-sovereignty.html" class="card-link">Read full essay</a>
+          <span class="card-time">45 · minute · read</span>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="card-meta">
+          <span class="card-date">October 15, 2025</span>
+          <span class="card-dot"></span>
+          <span class="card-type">Essay</span>
+          <span class="card-dot"></span>
+          <span class="card-read">15–20 minute read</span>
+          <span class="card-coauthor">Co-authored with Kacie Quigley</span>
+        </div>
+        <a href="gen-z.html" class="card-title">We Shaped the World That Shaped Them: Understanding Gen Z Through Our Collective Journey</a>
+        <p class="card-summary">Gen Z's apparent nihilism is not pathology — it is philosophy. This paper traces a chain of unintended consequences from Nixon's 1971 gold standard decision through the social movements, economic shocks, and institutional collapses that followed, arguing that Gen Z's rejection of inherited meaning systems is exactly the response Nietzsche predicted: a necessary crisis preceding the construction of new values. We built the ladder to the American Dream. The ground beneath it shifted. That is not Gen Z's failure — it is our inheritance to them.</p>
+        <div class="card-footer">
+          <a href="gen-z.html" class="card-link">Read full essay</a>
+          <span class="card-time">15–20 · minute · read</span>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="card-meta">
+          <span class="card-date">October 15, 2025</span>
+          <span class="card-dot"></span>
+          <span class="card-type">Professional Essay</span>
+          <span class="card-dot"></span>
+          <span class="card-read">15–20 minute read</span>
+          <span class="card-coauthor">Co-authored with Deborah Barnes, Principal Information Security Engineer, Zebra Technologies</span>
+        </div>
+        <a href="beyond-good-intentions.html" class="card-title">Beyond Good Intentions: A Male Leader's Playbook for Inclusive Cybersecurity Teams</a>
+        <p class="card-summary">Exclusion in cybersecurity teams is not merely a fairness issue — it is a critical security vulnerability that creates exploitable blind spots in defensive posture. Drawing on over 40 years of combined experience, this piece examines how unconscious bias undermines both team effectiveness and security outcomes, and provides male leaders with specific, actionable strategies for moving beyond good intentions toward measurably inclusive teams. Homogeneous teams think alike. Sophisticated adversaries count on it.</p>
+        <div class="card-footer">
+          <a href="beyond-good-intentions.html" class="card-link">Read full essay</a>
+          <span class="card-time">15–20 · minute · read</span>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-brand">Professor Q's Corner</div>
+        <span class="footer-maker">Cognitive Sovereignty Studios</span>
+        <div class="footer-copy">&copy; 2025 Professor Q's Corner. All rights reserved.</div>
+        <span class="footer-series">Part of the ongoing Cognitive Sovereignty series</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="thoughts.html">Thoughts</a>
+        <a href="about.html">About</a>
+        <a href="photos.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
