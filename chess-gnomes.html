@@ -7,8 +7,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css-brand.css">
     <style>
+        /* 1. Fix Margins */
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px; /* Creates the left/right margin */
+            display: flex;
+            align-items: center;
+            height: 60px;
+        }
+
+        /* 2. Center the Text Block */
+        .content-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 25px;
+            margin: 0 auto;
+        }
+        .gallery-grid {
+            display: grid;
+            /* Changed to fixed width (300px) instead of 1fr to prevent stretching */
+            grid-template-columns: repeat(auto-fit, 300px); 
+            gap: 30px;
+            justify-content: center; /* Centers the entire grid on the page */
+            padding: 20px;
+        }
         .gallery-item img {
-            width: 100%;
+            width: 300px;
             height: 400px;
             object-fit: contain; /* Essential: Ensures no cropping of pieces */
             background-color: #f8f8f8;
