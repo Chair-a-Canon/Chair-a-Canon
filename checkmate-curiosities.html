@@ -15,14 +15,19 @@
         display: block;
         object-fit: contain;
     }
+    .hero__content {
+    text-align: center;
+    width: 100%;
+}
 
     /* 2. Fix the "Squished" Alignment */
     .content-block.container {
-        max-width: 900px; /* Standardizes width */
-        margin: 0 auto;   /* Centers the block */
-        padding: 40px 20px;
-        text-align: center; /* Aligns text to center for better readability */
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the div in the middle of the screen */
+    text-align: center;  /* Centers the text lines themselves */
+    margin: 0 auto;
+}
 
     .text-center.max-width-700 {
         margin: 0 auto;
@@ -55,6 +60,16 @@
 .text-center.max-width-700 {
     margin-left: auto;
     margin-right: auto;
+}
+.piece-card-link {
+text-decoration: none;
+color: inherit;
+display: block;
+transition: transform 0.2s ease;
+}
+
+.piece-card-link:hover {
+    transform: translateY(-5px); /* Adds a subtle interactive lift */
 }
 </style>
 </head>
@@ -94,40 +109,48 @@
             </div>
         </section>
 
-        <section class="gallery-grid container">
-            <h2 class="section-title playfair">Active Collections</h2>
-            <div class="grid-three-col">
-                <div class="piece-card">
-                    <div class="piece-card__img-wrap">
-                        <img src="images/king.png" alt="Steampunk Gnomes Chess Set">
-                    </div>
-                    <div class="piece-card__details">
-                        <h3 class="playfair">Steampunk Gnomes</h3>
-                        <p class="small-caps">Completed Series</p>
-                    </div>
+       <section class="gallery-grid container">
+    <h2 class="section-title playfair">Active Collections</h2>
+    <div class="grid-three-col">
+        
+        <a href="chess-gnomes.html" class="piece-card-link">
+            <div class="piece-card">
+                <div class="piece-card__img-wrap">
+                    <img src="images/king.png" alt="Steampunk Gnomes Chess Set">
                 </div>
-
-                <div class="piece-card">
-                    <div class="piece-card__img-wrap">
-                        <img src="images/RookH2.jpeg" alt="Halloween Horror Chess Set">
-                    </div>
-                    <div class="piece-card__details">
-                        <h3 class="playfair">Halloween Horror</h3>
-                        <p class="small-caps">Completed Series</p>
-                    </div>
-                </div>
-
-                <div class="piece-card">
-                    <div class="piece-card__img-wrap">
-                        <img src="images/TheKING.jpeg" alt="Christmas Themed Chess Set">
-                    </div>
-                    <div class="piece-card__details">
-                        <h3 class="playfair">The Christmas Collection</h3>
-                        <p class="small-caps">Completed Series</p>
-                    </div>
+                <div class="piece-card__details">
+                    <h3 class="playfair">Steampunk Gnomes</h3>
+                    <p class="small-caps">View Collection</p>
                 </div>
             </div>
-        </section>
+        </a>
+
+        <a href="chess-halloween.html" class="piece-card-link">
+            <div class="piece-card">
+                <div class="piece-card__img-wrap">
+                    <img src="images/RookH2.jpeg" alt="Halloween Horror Chess Set">
+                </div>
+                <div class="piece-card__details">
+                    <h3 class="playfair">Halloween Horror</h3>
+                    <p class="small-caps">View Collection</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="chess-christmas.html" class="piece-card-link">
+            <div class="piece-card">
+                <div class="piece-card__img-wrap">
+                    <img src="images/TheKING.jpeg" alt="Christmas Themed Chess Set">
+                </div>
+                <div class="piece-card__details">
+                    <h3 class="playfair">The Christmas Collection</h3>
+                    <p class="small-caps">View Collection</p>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</section>
 
         <section class="cta-block bg-deep-teal text-white">
             <div class="container text-center">
