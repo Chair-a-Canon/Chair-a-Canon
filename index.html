@@ -1,47 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css-brand.css">
-    <title>Professor Q's Corner</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Q's Corner · Cognitive Sovereignty Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css-brand.css">
+  <style>
+    /* ── Index-specific layout ── */
+
+    .home-hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+      padding-block: 5rem 4rem;
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+    }
+
+    .home-hero__photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 1px solid rgba(29,158,117,0.3);
+      box-shadow: 0 0 0 4px rgba(8,80,65,0.4), 0 8px 32px rgba(0,0,0,0.5);
+      flex-shrink: 0;
+      transition: box-shadow 400ms ease;
+    }
+
+    .home-hero__photo:hover {
+      box-shadow: 0 0 0 4px rgba(29,158,117,0.4), 0 8px 40px rgba(29,158,117,0.2);
+    }
+
+    .home-hero__eyebrow {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1D9E75;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .home-hero__title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      color: #F1EFE8;
+      margin-bottom: 1.25rem;
+    }
+
+    .home-hero__title em {
+      font-style: italic;
+      color: #5DCAA5;
+    }
+
+    .home-hero__desc {
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #C8C4B7;
+      line-height: 1.75;
+      max-width: 52ch;
+      margin-bottom: 2rem;
+    }
+
+    .home-hero__tagline {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.5625rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(29,158,117,0.6);
+      border-top: 1px solid rgba(93,202,165,0.15);
+      padding-top: 1rem;
+      display: block;
+      max-width: 42ch;
+    }
+
+    /* ── Navigation ── */
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9,22,18,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(8,80,65,0.35);
+    }
+
+    .site-nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin-inline: auto;
+      padding: 0.875rem 2rem;
+      gap: 2rem;
+    }
+
+    .site-nav__brand {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .site-nav__brand-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #F1EFE8;
+      line-height: 1.1;
+      transition: color 150ms ease;
+    }
+
+    .site-nav__brand:hover .site-nav__brand-name { color: #5DCAA5; }
+
+    .site-nav__brand-sub {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.4375rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #1D9E75;
+    }
+
+    .site-nav__links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .site-nav__links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: #8A8880;
+      text-decoration: none;
+      padding-bottom: 2px;
+      position: relative;
+      transition: color 150ms ease;
+    }
+
+    .site-nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: #1D9E75;
+      transition: width 250ms ease;
+    }
+
+    .site-nav__links a:hover { color: #F1EFE8; }
+    .site-nav__links a:hover::after { width: 100%; }
+
+    /* ── Divider ── */
+
+    .home-divider {
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .home-divider__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(93,202,165,0.2), transparent);
+    }
+
+    .home-divider__text {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(29,158,117,0.45);
+      white-space: nowrap;
+    }
+
+    /* ── Divisions grid ── */
+
+    .divisions-section {
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+      padding-bottom: 5rem;
+    }
+
+    .divisions-section__heading {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.625rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #1D9E75;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .divisions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .division-card {
+      background: rgba(17,41,32,0.6);
+      border: 1px solid rgba(8,80,65,0.4);
+      border-radius: 14px;
+      padding: 1.75rem;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+    }
+
+    .division-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--div-accent, #1D9E75);
+      transition: height 250ms ease;
+    }
+
+    .division-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at top left, rgba(var(--div-glow), 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .division-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(var(--div-glow), 0.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(var(--div-glow), 0.1);
+    }
+
+    .division-card:hover::before { height: 4px; }
+
+    .division-card--checkmate {
+      --div-accent: #3C3489;
+      --div-glow: 60,52,137;
+    }
+
+    .division-card--drakes {
+      --div-accent: #1D9E75;
+      --div-glow: 29,158,117;
+    }
+
+    .division-card--studio {
+      --div-accent: #EF9F27;
+      --div-glow: 239,159,39;
+    }
+
+    .division-card__eyebrow {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8A8880;
+      margin-bottom: 0.875rem;
+      display: block;
+    }
+
+    .division-card__name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: #F1EFE8;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .division-card__tagline {
+      font-size: 0.8125rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      color: #8A8880;
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+
+    .division-card__cta {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1D9E75;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      transition: gap 150ms ease, color 150ms ease;
+    }
+
+    .division-card--checkmate .division-card__cta { color: #AFA9EC; }
+    .division-card--studio .division-card__cta { color: #EF9F27; }
+
+    .division-card__cta::after { content: '→'; }
+    .division-card:hover .division-card__cta { gap: 0.625rem; }
+
+    /* ── Thoughts section ── */
+
+    .home-thoughts {
+      border-top: 1px solid rgba(93,202,165,0.12);
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+      padding-block: 3.5rem;
+    }
+
+    .home-thoughts__header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .home-thoughts__title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: #F1EFE8;
+    }
+
+    .home-thoughts__all {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1D9E75;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: gap 150ms ease, color 150ms ease;
+    }
+
+    .home-thoughts__all::after { content: '→'; }
+    .home-thoughts__all:hover { color: #5DCAA5; gap: 0.5rem; }
+
+    .thought-preview {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(241,239,232,0.07);
+    }
+
+    .thought-preview:first-child { border-top: 1px solid rgba(241,239,232,0.07); }
+
+    .thought-preview__title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #F1EFE8;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.375rem;
+      transition: color 150ms ease;
+    }
+
+    .thought-preview__title:hover { color: #5DCAA5; }
+
+    .thought-preview__excerpt {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: #8A8880;
+      line-height: 1.65;
+      max-width: 62ch;
+    }
+
+    /* ── Footer ── */
+
+    .site-footer {
+      border-top: 1px solid rgba(8,80,65,0.3);
+      background: rgba(0,0,0,0.25);
+    }
+
+    .site-footer__inner {
+      max-width: 1100px;
+      margin-inline: auto;
+      padding: 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .site-footer__brand {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: #F1EFE8;
+      margin-bottom: 0.25rem;
+    }
+
+    .site-footer__maker {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.4375rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #1D9E75;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .site-footer__copy {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      color: #8A8880;
+    }
+
+    .site-footer__series {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.4375rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(138,136,128,0.5);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    .site-footer__links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+
+    .site-footer__links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      color: #8A8880;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .site-footer__links a:hover { color: #1D9E75; }
+
+    /* ── Responsive ── */
+
+    @media (max-width: 680px) {
+      .home-hero {
+        grid-template-columns: 1fr;
+        padding-block: 3rem 2.5rem;
+        gap: 2rem;
+      }
+
+      .home-hero__photo {
+        width: 110px;
+        height: 110px;
+        order: -1;
+      }
+
+      .site-nav__links { gap: 1rem; }
+
+      .site-footer__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer__links {
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <header class="header">
-            <h1 class="site-title">Professor Q's Corner</h1>
-        </header>
 
-        <div class="main-content">
-            <div class="text-section">
-                <p class="description">
-                    Here have come to rest my thoughts, ideas, opinions and rants. Welcome to this humble corner of the digital realm where academic musings meet real-world observations, and where the intersection of scholarship and life unfolds in all its complexity.
-                </p>
-            </div>
-
-            <div class="image-section">
-                <div class="professor-illustration">
-                    <img src="professor-q-photo.jpg" alt="Professor Q - Professional headshot of an academic with gray beard wearing a red shirt and dark jacket" class="professor-image">
-                </div>
-            </div>
-        </div>
-
-        <nav class="navigation">
-            <div class="nav-links">
-                <a href="thoughts.html" class="nav-link">Thoughts</a>
-                <a href="coming-soon.html" class="nav-link">Ideas</a>
-                <a href="coming-soon.html" class="nav-link">Opinions</a>
-                <a href="coming-soon.html" class="nav-link">Rants</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="photos.html" class="nav-link">Images</a>
-            </div>
-        </nav>
-
-        <footer class="footer">
-            <p>&copy; 2025 Professor Q's Corner. A place for academic discourse and contemplation.</p>
-        </footer>
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand" aria-label="Professor Q's Corner — Home">
+        <span class="site-nav__brand-name">Professor Q's Corner</span>
+        <span class="site-nav__brand-sub">Cognitive Sovereignty Studios</span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="thoughts.html">Thoughts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="photos.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <header>
+    <div class="home-hero">
+      <div class="home-hero__content">
+        <span class="home-hero__eyebrow">Cognitive Sovereignty Studios</span>
+        <h1 class="home-hero__title">
+          Professor Q's<br><em>Corner</em>
+        </h1>
+        <p class="home-hero__desc">
+          Here have come to rest my thoughts, ideas, opinions and rants.
+          A corner of the digital realm where academic musings meet real-world
+          observations — and where the intersection of scholarship, creativity,
+          and life unfolds in all its complexity.
+        </p>
+        <span class="home-hero__tagline">
+          Thought made tangible &nbsp;·&nbsp; Never made twice
+        </span>
+      </div>
+      <img
+        src="professor-q-photo.jpg"
+        alt="Professor Q — academic, artist, veteran, author"
+        class="home-hero__photo"
+      >
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══ DIVISIONS ═══ -->
+    <div class="home-divider">
+      <div class="home-divider__line"></div>
+      <span class="home-divider__text">The Studio Divisions</span>
+      <div class="home-divider__line"></div>
+    </div>
+
+    <section class="divisions-section" aria-label="Studio divisions">
+      <span class="divisions-section__heading">Where the work lives</span>
+      <div class="divisions-grid">
+
+        <a href="checkmate-curiosities.html" class="division-card division-card--checkmate">
+          <span class="division-card__eyebrow">Division 01 · Chess Art</span>
+          <div class="division-card__name">Checkmate Curiosities</div>
+          <p class="division-card__tagline">
+            Hand-painted, one-of-a-kind chess sets where no two boards
+            are ever the same. Non-sequitur characters. Singular worlds.
+          </p>
+          <span class="division-card__cta">Explore the collection</span>
+        </a>
+
+        <a href="traveling-drakes.html" class="division-card division-card--drakes">
+          <span class="division-card__eyebrow">Division 02 · Duck Art</span>
+          <div class="division-card__name">Traveling Drakes</div>
+          <p class="division-card__tagline">
+            Hand-painted cruise and jeep ducks. Left with intention,
+            found by fortune. Not all who waddle are lost.
+          </p>
+          <span class="division-card__cta">Meet the drakes</span>
+        </a>
+
+        <a href="studio.html" class="division-card division-card--studio">
+          <span class="division-card__eyebrow">The Parent Studio</span>
+          <div class="division-card__name">Cognitive Sovereignty Studios</div>
+          <p class="division-card__tagline">
+            Independence of thought. Ownership of mind. Art born from
+            a life deliberately and precisely lived.
+          </p>
+          <span class="division-card__cta">The studio story</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ═══ THOUGHTS PREVIEW ═══ -->
+    <section class="home-thoughts" aria-label="Recent thoughts">
+      <div class="home-thoughts__header">
+        <h2 class="home-thoughts__title">Recent Thoughts</h2>
+        <a href="thoughts.html" class="home-thoughts__all">All writings</a>
+      </div>
+
+      <article class="thought-preview">
+        <a href="thoughts.html" class="thought-preview__title">
+          On Cognitive Sovereignty
+        </a>
+        <p class="thought-preview__excerpt">
+          The examined life — what it means to take genuine ownership of one's
+          thoughts, decisions, and the creative work that follows from both.
+        </p>
+      </article>
+
+      <article class="thought-preview">
+        <a href="thoughts.html" class="thought-preview__title">
+          The Intersection of Discipline and Imagination
+        </a>
+        <p class="thought-preview__excerpt">
+          Field artillery demands precision. Art demands freedom. The space
+          between those two demands is where the most interesting work happens.
+        </p>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="site-footer__brand">Professor Q's Corner</div>
+        <span class="site-footer__maker">Cognitive Sovereignty Studios</span>
+        <div class="site-footer__copy">&copy; 2025 Professor Q's Corner. All rights reserved.</div>
+        <span class="site-footer__series">Part of the ongoing Cognitive Sovereignty series</span>
+      </div>
+      <nav class="site-footer__links" aria-label="Footer navigation">
+        <a href="thoughts.html">Thoughts</a>
+        <a href="about.html">About</a>
+        <a href="photos.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
 </body>
 </html>
