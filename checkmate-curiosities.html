@@ -46,38 +46,40 @@
     .ooak-banner__dot { width:5px;height:5px;border-radius:50%;background:#3C3489; }
     .ooak-banner__text { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:#AFA9EC; }
 
-    /* ── Collection section ── */
-    .collection { max-width:1100px;margin-inline:auto;padding:4rem 2rem;border-top:1px solid rgba(60,52,137,0.15); }
-    .collection:first-of-type { border-top:none; }
-    .collection__header { margin-bottom:2.5rem; }
-    .collection__top { display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:0.5rem; }
-    .collection__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:300;color:#F1EFE8;line-height:1.15; }
-    .collection__count { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.14em;text-transform:uppercase;color:#8A8880;white-space:nowrap; }
-    .collection__tagline { font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:0.9375rem;color:#8A8880; }
+    /* ── Collections intro ── */
+    .collections-intro { max-width:1100px;margin-inline:auto;padding:5rem 2rem 2rem; }
+    .collections-intro__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#AFA9EC;margin-bottom:1rem;display:block; }
+    .collections-intro__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;color:#F1EFE8;line-height:1.15;margin-bottom:0.875rem; }
+    .collections-intro__desc { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.75;max-width:60ch;margin-bottom:0; }
 
-    /* ── Piece grid ── */
-    .pieces-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-bottom:2.5rem; }
-    .piece-card { background:rgba(17,41,32,0.5);border:1px solid rgba(60,52,137,0.2);border-radius:10px;overflow:hidden;transition:transform 250ms ease,box-shadow 250ms ease,border-color 250ms ease; }
-    .piece-card:hover { transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.45);border-color:rgba(60,52,137,0.4); }
-    .piece-card__img-wrap { height:280px;overflow:hidden;background:rgba(8,30,22,0.8);position:relative; }
-    .piece-card__img-wrap img { width:100%;height:100%;object-fit:contain;transition:transform 400ms ease; }
-    .piece-card:hover .piece-card__img-wrap img { transform:scale(1.03); }
-    .piece-card__badge { position:absolute;top:0.625rem;right:0.625rem;font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.1em;text-transform:uppercase;color:#F1EFE8;background:rgba(60,52,137,0.85);backdrop-filter:blur(4px);padding:3px 8px;border-radius:4px;border:1px solid rgba(175,169,236,0.3); }
-    .piece-card__body { padding:1rem; }
-    .piece-card__name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-weight:400;color:#F1EFE8;margin-bottom:0.25rem;line-height:1.25; }
-    .piece-card__role { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.1em;text-transform:uppercase;color:#AFA9EC;margin-bottom:0.5rem;display:block; }
-    .piece-card__desc { font-family:'Jost',sans-serif;font-size:0.75rem;font-weight:300;color:rgba(138,136,128,0.8);line-height:1.55; }
+    /* ── Collection summary cards ── */
+    .collections-grid { max-width:1100px;margin-inline:auto;padding:2.5rem 2rem 5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem; }
 
-    /* ── Pawns ── */
-    .pawns-header { display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem;padding-top:0.5rem;border-top:1px solid rgba(241,239,232,0.06); }
-    .pawns-header__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.2rem;font-weight:400;color:#C8C4B7; }
-    .pawns-header__note { font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:0.8125rem;color:#8A8880; }
-    .pawns-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:0.625rem; }
-    .pawn-card { background:rgba(17,41,32,0.4);border:1px solid rgba(60,52,137,0.15);border-radius:8px;overflow:hidden;transition:transform 200ms ease; }
-    .pawn-card:hover { transform:translateY(-3px); }
-    .pawn-card img { width:100%;aspect-ratio:1;object-fit:contain;background:rgba(8,30,22,0.6); }
+    .collection-card { background:rgba(17,41,32,0.5);border:1px solid rgba(60,52,137,0.2);border-radius:12px;padding:2rem;position:relative;overflow:hidden;transition:transform 250ms ease,box-shadow 250ms ease,border-color 250ms ease; }
+    .collection-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#3C3489;transition:height 200ms ease; }
+    .collection-card:hover { transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,0,0,0.45);border-color:rgba(60,52,137,0.45); }
+    .collection-card:hover::before { height:4px; }
 
-    /* ── Provenance note ── */
+    .collection-card__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.14em;text-transform:uppercase;color:#8A8880;margin-bottom:0.75rem;display:block; }
+    .collection-card__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:400;color:#F1EFE8;margin-bottom:0.375rem;line-height:1.2; }
+    .collection-card__tagline { font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:0.875rem;color:#AFA9EC;margin-bottom:1.125rem;display:block; }
+    .collection-card__desc { font-family:'Jost',sans-serif;font-size:0.875rem;font-weight:300;color:#C8C4B7;line-height:1.65;margin-bottom:1.5rem; }
+
+    .collection-card__meta { display:flex;flex-wrap:wrap;gap:0.625rem;margin-bottom:1.75rem; }
+    .collection-card__tag { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.1em;text-transform:uppercase;color:#AFA9EC;background:rgba(60,52,137,0.15);border:1px solid rgba(60,52,137,0.25);border-radius:4px;padding:3px 9px; }
+
+    .collection-card__link { font-family:'Jost',sans-serif;font-size:0.6875rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#AFA9EC;text-decoration:none;display:inline-flex;align-items:center;gap:0.375rem;transition:gap 150ms ease,color 150ms ease; }
+    .collection-card__link::after { content:'→'; }
+    .collection-card__link:hover { color:#F1EFE8;gap:0.625rem; }
+
+    /* ── Gallery CTA ── */
+    .gallery-cta { max-width:1100px;margin-inline:auto;padding:0 2rem 4rem; }
+    .gallery-cta__inner { background:rgba(8,80,65,0.1);border:1px solid rgba(29,158,117,0.15);border-radius:12px;padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center; }
+    .gallery-cta__heading { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.625rem;display:block; }
+    .gallery-cta__text { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.7;max-width:50ch; }
+    .gallery-cta__actions { display:flex;flex-direction:column;gap:0.75rem;align-items:flex-end;flex-shrink:0; }
+
+    /* ── Provenance ── */
     .provenance { max-width:1100px;margin-inline:auto;padding:3rem 2rem 6rem;border-top:1px solid rgba(60,52,137,0.15); }
     .provenance__inner { background:rgba(8,80,65,0.08);border:1px solid rgba(60,52,137,0.2);border-radius:12px;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center; }
     .provenance__heading { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:#AFA9EC;margin-bottom:0.75rem;display:block; }
@@ -98,14 +100,15 @@
     @media (max-width:860px) {
       .cc-hero { grid-template-columns:1fr;gap:3rem;padding-block:3rem 2.5rem; }
       .cc-hero__image-wrap { max-width:480px; }
+      .gallery-cta__inner { grid-template-columns:1fr;gap:1.5rem; }
+      .gallery-cta__actions { align-items:flex-start;flex-direction:row; }
       .provenance__inner { grid-template-columns:1fr; }
       .provenance__mark { text-align:left; }
     }
     @media (max-width:600px) {
-      .cc-hero,.collection,.provenance,.ooak-banner__inner { padding-inline:1.25rem; }
+      .cc-hero,.collections-intro,.collections-grid,.gallery-cta,.provenance { padding-inline:1.25rem; }
+      .ooak-banner__inner { padding-inline:1.25rem; }
       .site-nav__inner { padding-inline:1.25rem; }
-      .pieces-grid { grid-template-columns:repeat(2,1fr);gap:0.75rem; }
-      .pawns-grid { grid-template-columns:repeat(4,1fr); }
       .site-footer__inner { grid-template-columns:1fr; }
       .footer-links { align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:1rem; }
     }
@@ -113,6 +116,7 @@
 </head>
 <body>
 
+  <!-- ═══ NAV ═══ -->
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="site-nav__inner">
       <a href="index.html" class="site-nav__brand">
@@ -133,7 +137,7 @@
     <div>
       <span class="cc-hero__eyebrow">Division 01 · Chess Art · Cognitive Sovereignty Studios</span>
       <h1 class="cc-hero__title">Checkmate<br>Curiosities</h1>
-      <span class="cc-hero__tagline">"Never the same chess piece twice."</span>
+      <span class="cc-hero__tagline">"Never the same board twice."</span>
       <p class="cc-hero__desc">
         Hand-designed, hand-painted non-sequitur chess sets — each piece a singular character
         that will never be painted again in precisely the same way. Three collections. Zero
@@ -147,7 +151,7 @@
     </div>
     <div class="cc-hero__image-wrap">
       <img
-        src="images/checkmate-curiosities.png"
+        src="images/Checkmate_Curiosities.png"
         alt="Checkmate Curiosities — an empty teal and parchment chess board with a paintbrush laid diagonally across it"
         class="cc-hero__image"
       >
@@ -179,353 +183,96 @@
 
   <main>
 
-    <!-- ══ STEAMPUNK GNOMES ══ -->
-    <section class="collection" aria-labelledby="gnomes-heading">
-      <div class="collection__header">
-        <div class="collection__top">
-          <h2 class="collection__title" id="gnomes-heading">Steampunk Gnomes</h2>
-          <span class="collection__count">16 pieces · Complete · One of a kind</span>
-        </div>
-        <p class="collection__tagline">A gallery of one-of-a-kind, hand-painted originals — where gnome meets gear, and magic meets steam.</p>
-      </div>
-
-      <div class="pieces-grid">
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/king.png" alt="The High King — Steampunk Gnome King" loading="lazy">
-            <span class="piece-card__badge">King</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The High King</div>
-            <span class="piece-card__role">King · Checkmate Curiosities</span>
-            <p class="piece-card__desc">All the regality of the gnomes — sovereign of steam and gearwork.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/queen.png" alt="The Verdant Queen" loading="lazy">
-            <span class="piece-card__badge">Queen</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Verdant Queen</div>
-            <span class="piece-card__role">Queen · Checkmate Curiosities</span>
-            <p class="piece-card__desc">A warrior Queen. No gnome kingdom stands without her.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/violetBishop.png" alt="The Violet Sage" loading="lazy">
-            <span class="piece-card__badge">Bishop</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Violet Sage</div>
-            <span class="piece-card__role">Bishop · The Queen's Bishop</span>
-            <p class="piece-card__desc">The Queen's Bishop — wisdom cloaked in violet and brass.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/bishop1.png" alt="Please don't call me Rose" loading="lazy">
-            <span class="piece-card__badge">Bishop</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">Please don't call me "Rose"</div>
-            <span class="piece-card__role">Bishop · The King's Bishop</span>
-            <p class="piece-card__desc">The King's Bishop — she has a name, and it isn't Rose.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Knight1.png" alt="The Iron Knight" loading="lazy">
-            <span class="piece-card__badge">Knight</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Iron Knight</div>
-            <span class="piece-card__role">Knight · Checkmate Curiosities</span>
-            <p class="piece-card__desc">Steampunk gnomes — who would have thought.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Knight2.png" alt="The Axe Man Commeth" loading="lazy">
-            <span class="piece-card__badge">Knight</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Axe Man Commeth</div>
-            <span class="piece-card__role">Knight · Checkmate Curiosities</span>
-            <p class="piece-card__desc">Steampunk axe in one hand, threshing axe in the other. Don't ask questions.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/rook1.png" alt="The Gearwork Bastion" loading="lazy">
-            <span class="piece-card__badge">Rook</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Gearwork Bastion</div>
-            <span class="piece-card__role">Rook · Checkmate Curiosities</span>
-            <p class="piece-card__desc">A steampunk rook — fortress of brass and turning gears.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/rook2.png" alt="Bookend Rooks" loading="lazy">
-            <span class="piece-card__badge">Rook</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">Bookend Rooks</div>
-            <span class="piece-card__role">Rooks · Pair</span>
-            <p class="piece-card__desc">The twin bastions — every fortress needs two towers.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="pawns-header">
-        <span class="pawns-header__title">The Gnome Pawns</span>
-        <span class="pawns-header__note">They glow in the dark.</span>
-      </div>
-      <div class="pawns-grid">
-        <div class="pawn-card"><img src="images/Gpawn1.png" alt="Steampunk Gnome Pawn 1" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Gpawn2.png" alt="Steampunk Gnome Pawn 2" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Gpawn3.png" alt="Steampunk Gnome Pawn 3" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Gpawn4.png" alt="Steampunk Gnome Pawn 4" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Gpawn5.png" alt="Steampunk Gnome Pawn 5" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Gpawn6.png" alt="Steampunk Gnome Pawn 6" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Gpawn7.png" alt="Steampunk Gnome Pawn 7" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Gpawn8.jpeg" alt="Steampunk Gnome Pawn 8" loading="lazy"></div>
-      </div>
+    <!-- ═══ COLLECTIONS INTRO ═══ -->
+    <section class="collections-intro">
+      <span class="collections-intro__eyebrow">The Collections</span>
+      <h2 class="collections-intro__title">Three worlds. Forty-eight pieces. No repeats.</h2>
+      <p class="collections-intro__desc">
+        Each collection is a complete set of 16 hand-painted originals — king, queen, bishops,
+        knights, rooks, and pawns — unified by a theme and separated by the fact that no two
+        pieces across any collection were ever painted the same way twice. View the full gallery
+        to see every piece in detail.
+      </p>
     </section>
 
-    <!-- ══ CHRISTMAS ══ -->
-    <section class="collection" aria-labelledby="christmas-heading">
-      <div class="collection__header">
-        <div class="collection__top">
-          <h2 class="collection__title" id="christmas-heading">Christmas Collection</h2>
-          <span class="collection__count">16 pieces · Complete · One of a kind</span>
+    <!-- ═══ COLLECTION SUMMARY CARDS ═══ -->
+    <div class="collections-grid">
+
+      <!-- Steampunk Gnomes -->
+      <div class="collection-card">
+        <span class="collection-card__eyebrow">Collection 01 · Complete</span>
+        <div class="collection-card__title">Steampunk Gnomes</div>
+        <span class="collection-card__tagline">"Where gnome meets gear, and magic meets steam."</span>
+        <p class="collection-card__desc">
+          Sixteen hand-painted gnome chess pieces in full steampunk regalia — The High King,
+          The Verdant Queen, The Violet Sage, The Iron Knight, The Gearwork Bastion, and eight
+          pawns that glow in the dark. Every piece is a singular character that arrived fully
+          formed from the imagination and will not return.
+        </p>
+        <div class="collection-card__meta">
+          <span class="collection-card__tag">16 pieces</span>
+          <span class="collection-card__tag">Glow-in-the-dark pawns</span>
+          <span class="collection-card__tag">Complete set</span>
+          <span class="collection-card__tag">One of a kind</span>
         </div>
-        <p class="collection__tagline">Holiday-themed hand-painted originals — where chess meets Christmas magic.</p>
+        <a href="photos.html" class="collection-card__link">See the collection in gallery</a>
       </div>
 
-      <div class="pieces-grid">
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/TheKING.jpeg" alt="The King — Santa" loading="lazy">
-            <span class="piece-card__badge">King</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The King</div>
-            <span class="piece-card__role">King · Santa holds the throne</span>
-            <p class="piece-card__desc">Santa holding The King — the true sovereign of Christmas.</p>
-          </div>
+      <!-- Christmas -->
+      <div class="collection-card">
+        <span class="collection-card__eyebrow">Collection 02 · Complete</span>
+        <div class="collection-card__title">Christmas Collection</div>
+        <span class="collection-card__tagline">"Where chess meets Christmas magic."</span>
+        <p class="collection-card__desc">
+          Sixteen holiday-themed originals including Santa as King, a Christmas Queen complete
+          with cookies, Rudolph and Blitzen as Knights, and the Naughty and Nice List Bishops.
+          A full set of Christmas pawns completes the board. Singular. Festive. Irrepeatable.
+        </p>
+        <div class="collection-card__meta">
+          <span class="collection-card__tag">16 pieces</span>
+          <span class="collection-card__tag">Holiday theme</span>
+          <span class="collection-card__tag">Complete set</span>
+          <span class="collection-card__tag">One of a kind</span>
         </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Christmas queen.jpeg" alt="The Christmas Queen" loading="lazy">
-            <span class="piece-card__badge">Queen</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Christmas Queen</div>
-            <span class="piece-card__role">Queen · Complete with Cookies</span>
-            <p class="piece-card__desc">She rules the board and the kitchen. The cookies are not negotiable.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Naughty list.jpeg" alt="The Naughty List Bishop" loading="lazy">
-            <span class="piece-card__badge">Bishop</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Naughty List Bishop</div>
-            <span class="piece-card__role">Bishop · Somebody doesn't play well with others</span>
-            <p class="piece-card__desc">Somebody doesn't get along with others. We know who you are.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Nice list.jpeg" alt="The Nice List Bishop" loading="lazy">
-            <span class="piece-card__badge">Bishop</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Nice List Bishop</div>
-            <span class="piece-card__role">Bishop · There is still good in this world</span>
-            <p class="piece-card__desc">There is still good in this world, and it is worth fighting for.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Rudolph.jpeg" alt="Rudolph — Knight" loading="lazy">
-            <span class="piece-card__badge">Knight</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">Rudolph, The Knight</div>
-            <span class="piece-card__role">Knight · You could even say it glows</span>
-            <p class="piece-card__desc">The shiny-nosed knight. You could even say his nose glows.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Blitzen.jpeg" alt="Blitzen — Knight" loading="lazy">
-            <span class="piece-card__badge">Knight</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">Blitzen, The Knight</div>
-            <span class="piece-card__role">Knight · They were African Swallows</span>
-            <p class="piece-card__desc">They were African Swallows, obviously.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Christmas rook1.jpeg" alt="The Christmas Tower" loading="lazy">
-            <span class="piece-card__badge">Rook</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Christmas Tower</div>
-            <span class="piece-card__role">Rook · Tall and majestic</span>
-            <p class="piece-card__desc">A festive tower — tall, majestic, and unyielding.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Christmas rook2.jpeg" alt="The Other Christmas Tower" loading="lazy">
-            <span class="piece-card__badge">Rook</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Other Christmas Tower</div>
-            <span class="piece-card__role">Rook · Beautiful bookends</span>
-            <p class="piece-card__desc">Just as magnificent. Every fortress needs two towers.</p>
-          </div>
-        </div>
+        <a href="photos.html" class="collection-card__link">See the collection in gallery</a>
       </div>
 
-      <div class="pawns-header">
-        <span class="pawns-header__title">The Christmas Pawns</span>
-      </div>
-      <div class="pawns-grid">
-        <div class="pawn-card"><img src="images/Cpawn1.jpeg" alt="Christmas Pawn 1" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Cpawn2.jpeg" alt="Christmas Pawn 2" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Cpawn3.jpeg" alt="Christmas Pawn 3" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Cpawn4.jpeg" alt="Christmas Pawn 4" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Cpawn5.jpeg" alt="Christmas Pawn 5" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Cpawn6.jpeg" alt="Christmas Pawn 6" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Cpawn7.jpeg" alt="Christmas Pawn 7" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Cpawn8.jpeg" alt="Christmas Pawn 8" loading="lazy"></div>
-      </div>
-    </section>
-
-    <!-- ══ HALLOWEEN ══ -->
-    <section class="collection" aria-labelledby="halloween-heading">
-      <div class="collection__header">
-        <div class="collection__top">
-          <h2 class="collection__title" id="halloween-heading">Halloween Collection</h2>
-          <span class="collection__count">16 pieces · Complete · One of a kind</span>
+      <!-- Halloween -->
+      <div class="collection-card">
+        <span class="collection-card__eyebrow">Collection 03 · Complete</span>
+        <div class="collection-card__title">Halloween Collection</div>
+        <span class="collection-card__tagline">"Darkness in every diagonal."</span>
+        <p class="collection-card__desc">
+          Sixteen spooky originals including Frank (Frankenstein) as King, Elvira as Queen,
+          Egyptian and Mummy Bishops, Werewolf and Dracula Knights, and eight Jack-o-Lantern
+          pawns that — when good Jack-o-Lanterns go bad. A complete board of singular darkness.
+        </p>
+        <div class="collection-card__meta">
+          <span class="collection-card__tag">16 pieces</span>
+          <span class="collection-card__tag">Halloween theme</span>
+          <span class="collection-card__tag">Complete set</span>
+          <span class="collection-card__tag">One of a kind</span>
         </div>
-        <p class="collection__tagline">Spooky hand-painted originals — darkness in every diagonal.</p>
+        <a href="photos.html" class="collection-card__link">See the collection in gallery</a>
       </div>
 
-      <div class="pieces-grid">
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Frank.jpeg" alt="Frank The King" loading="lazy">
-            <span class="piece-card__badge">King</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">Frank The King</div>
-            <span class="piece-card__role">King · Who doesn't love Frankenstein</span>
-            <p class="piece-card__desc">Who doesn't love the Frankenstein Monster. He's the King of this board.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/Elvira.jpeg" alt="The Mistress of the Chess Board" loading="lazy">
-            <span class="piece-card__badge">Queen</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Mistress of the Chess Board</div>
-            <span class="piece-card__role">Queen · Elvira reigns</span>
-            <p class="piece-card__desc">Did you know that Elvira is from Colorado? So is this Queen.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/BishopsH1.jpeg" alt="The Egyptian Bishop" loading="lazy">
-            <span class="piece-card__badge">Bishop</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Egyptian Bishop</div>
-            <span class="piece-card__role">Bishop · Ancient Egypt on the board</span>
-            <p class="piece-card__desc">Ancient Egypt comes to the chess board — ruling diagonally, as always.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/BishopH2.jpeg" alt="The Mummy Returns" loading="lazy">
-            <span class="piece-card__badge">Bishop</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Mummy Returns</div>
-            <span class="piece-card__role">Bishop · The Mummy Returns... as a Bishop?</span>
-            <p class="piece-card__desc">The Mummy Returns — as a Bishop? Stranger things have happened.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/KnightH1.jpeg" alt="The Werewolf Knight" loading="lazy">
-            <span class="piece-card__badge">Knight</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Werewolf Knight</div>
-            <span class="piece-card__role">Knight · Werewolves can be Knights too</span>
-            <p class="piece-card__desc">The L-shaped move suits the lupine soul.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/KnightH2.jpeg" alt="The Second Knight" loading="lazy">
-            <span class="piece-card__badge">Knight</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Second Knight</div>
-            <span class="piece-card__role">Knight · I wonder if he grew up in London</span>
-            <p class="piece-card__desc">I wonder if he grew up in London. The cape suggests otherwise.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/RookH1.jpeg" alt="The Rook" loading="lazy">
-            <span class="piece-card__badge">Rook</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Rook</div>
-            <span class="piece-card__role">Rook · The tower speaks for itself</span>
-            <p class="piece-card__desc">Some towers don't need explanation.</p>
-          </div>
-        </div>
-        <div class="piece-card">
-          <div class="piece-card__img-wrap">
-            <img src="images/RookH2.jpeg" alt="The Other Rook" loading="lazy">
-            <span class="piece-card__badge">Rook</span>
-          </div>
-          <div class="piece-card__body">
-            <div class="piece-card__name">The Other Rook</div>
-            <span class="piece-card__role">Rook · Just as magnificent</span>
-            <p class="piece-card__desc">The board wouldn't be complete without its twin.</p>
-          </div>
-        </div>
-      </div>
+    </div>
 
-      <div class="pawns-header">
-        <span class="pawns-header__title">The Jack-o-Lantern Pawns</span>
-        <span class="pawns-header__note">When good Jack-o-Lanterns go bad.</span>
-      </div>
-      <div class="pawns-grid">
-        <div class="pawn-card"><img src="images/Jack1.jpeg" alt="Jack-o-Lantern Pawn 1" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Jack2.jpeg" alt="Jack-o-Lantern Pawn 2" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Jack3.jpeg" alt="Jack-o-Lantern Pawn 3" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Jack4.jpeg" alt="Jack-o-Lantern Pawn 4" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Jack5.jpeg" alt="Jack-o-Lantern Pawn 5" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Jack6.jpeg" alt="Jack-o-Lantern Pawn 6" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Jack7.jpeg" alt="Jack-o-Lantern Pawn 7" loading="lazy"></div>
-        <div class="pawn-card"><img src="images/Jack8.jpeg" alt="Jack-o-Lantern Pawn 8" loading="lazy"></div>
+    <!-- ═══ GALLERY CTA ═══ -->
+    <section class="gallery-cta" aria-label="Gallery call to action">
+      <div class="gallery-cta__inner">
+        <div>
+          <span class="gallery-cta__heading">View Every Piece</span>
+          <p class="gallery-cta__text">
+            The full gallery contains every piece from all three collections — principal pieces
+            and pawns, photographed individually. Each one named, each one described, each one
+            available only once.
+          </p>
+        </div>
+        <div class="gallery-cta__actions">
+          <a href="photos.html" class="btn-primary">Open full gallery</a>
+          <a href="https://www.etsy.com" target="_blank" rel="noopener" class="btn-etsy">Shop on Etsy</a>
+        </div>
       </div>
     </section>
 
@@ -546,6 +293,7 @@
 
   </main>
 
+  <!-- ═══ FOOTER ═══ -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div>
