@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About · Professor Q's Corner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css-brand.css">
+  <style>
+
+    /* ── Nav ── */
+    .site-nav { position:sticky;top:0;z-index:100;background:rgba(9,22,18,0.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(8,80,65,0.35); }
+    .site-nav__inner { display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin-inline:auto;padding:0.875rem 2rem;gap:2rem; }
+    .site-nav__brand { text-decoration:none;display:flex;flex-direction:column;gap:2px; }
+    .site-nav__brand-name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:400;color:#F1EFE8;line-height:1.1;transition:color 150ms ease; }
+    .site-nav__brand:hover .site-nav__brand-name { color:#5DCAA5; }
+    .site-nav__brand-sub { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75; }
+    .site-nav__links { display:flex;align-items:center;gap:1.75rem;list-style:none;flex-wrap:wrap; }
+    .site-nav__links a { font-family:'Jost',sans-serif;font-size:0.8rem;letter-spacing:0.04em;color:#8A8880;text-decoration:none;padding-bottom:2px;position:relative;transition:color 150ms ease; }
+    .site-nav__links a::after { content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#1D9E75;transition:width 250ms ease; }
+    .site-nav__links a:hover { color:#F1EFE8; }
+    .site-nav__links a:hover::after { width:100%; }
+    .site-nav__links a.active { color:#F1EFE8; }
+    .site-nav__links a.active::after { width:100%; }
+
+    /* ── Hero ── */
+    .about-hero { max-width:1100px;margin-inline:auto;padding:5rem 2rem 4rem;display:grid;grid-template-columns:1fr 220px;gap:5rem;align-items:start; }
+    .about-hero__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.18em;text-transform:uppercase;color:#1D9E75;margin-bottom:1rem;display:block; }
+    .about-hero__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:300;color:#F1EFE8;line-height:1.08;letter-spacing:-0.02em;margin-bottom:1rem; }
+    .about-hero__title em { font-style:italic;color:#5DCAA5; }
+    .about-hero__lead { font-family:'Jost',sans-serif;font-size:1.05rem;font-weight:300;color:#C8C4B7;line-height:1.8;max-width:55ch;margin-bottom:1.5rem; }
+    .about-hero__tagline { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(29,158,117,0.6);padding-top:1.25rem;border-top:1px solid rgba(93,202,165,0.15);display:block;max-width:44ch; }
+
+    /* Photo */
+    .about-hero__photo-wrap { display:flex;flex-direction:column;align-items:center;gap:0.875rem;padding-top:0.5rem; }
+    .about-hero__photo { width:200px;height:200px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid rgba(29,158,117,0.25);box-shadow:0 0 0 4px rgba(8,80,65,0.4),0 12px 40px rgba(0,0,0,0.5); }
+    .about-hero__photo-name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:400;color:#F1EFE8;text-align:center; }
+    .about-hero__photo-alias { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.14em;text-transform:uppercase;color:#1D9E75;text-align:center; }
+
+    /* ── Identity cards ── */
+    .identities { max-width:1100px;margin-inline:auto;padding:0 2rem 4rem;border-top:none; }
+    .identities__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:1.5rem;display:block; }
+    .identities__grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem; }
+
+    .id-card { background:rgba(17,41,32,0.5);border:1px solid rgba(8,80,65,0.35);border-radius:10px;padding:1.375rem 1.5rem;position:relative;overflow:hidden; }
+    .id-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-accent,#1D9E75); }
+    .id-card--military { --card-accent:#1D9E75; }
+    .id-card--cyber { --card-accent:#5DCAA5; }
+    .id-card--academic { --card-accent:#AFA9EC; }
+    .id-card--author { --card-accent:#EF9F27; }
+    .id-card--artist { --card-accent:#F0997B; }
+    .id-card--community { --card-accent:#D85A30; }
+
+    .id-card__label { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--card-accent,#1D9E75);margin-bottom:0.625rem;display:block; }
+    .id-card__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;font-weight:400;color:#F1EFE8;margin-bottom:0.375rem;line-height:1.25; }
+    .id-card__detail { font-family:'Jost',sans-serif;font-size:0.8rem;font-weight:300;color:#8A8880;line-height:1.55; }
+
+    /* ── Narrative sections ── */
+    .narrative { max-width:1100px;margin-inline:auto;padding:5rem 2rem;border-top:1px solid rgba(93,202,165,0.1); }
+    .narrative__inner { display:grid;grid-template-columns:220px 1fr;gap:5rem;align-items:start; }
+    .narrative__label { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;position:sticky;top:5.5rem;padding-top:0.25rem; }
+    .narrative__body h2 { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:#F1EFE8;line-height:1.2;margin-bottom:1.25rem; }
+    .narrative__body p { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.85;margin-bottom:1.25rem;max-width:62ch; }
+    .narrative__body p:last-child { margin-bottom:0; }
+    .narrative__body strong { color:#F1EFE8;font-weight:500; }
+    .narrative__body em { font-style:italic;color:#D3D1C7; }
+
+    /* Pull quote */
+    .pull-quote { border-left:3px solid #1D9E75;padding:1rem 1.5rem;margin:2.5rem 0;background:rgba(8,80,65,0.1);border-radius:0 8px 8px 0; }
+    .pull-quote p { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.2rem;font-style:italic;color:#F1EFE8;line-height:1.55;margin:0;max-width:none; }
+
+    /* ── Studio connection ── */
+    .studio-connection { max-width:1100px;margin-inline:auto;padding:5rem 2rem;border-top:1px solid rgba(93,202,165,0.1); }
+    .studio-connection__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:1rem;display:block; }
+    .studio-connection__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:#F1EFE8;line-height:1.2;margin-bottom:1.25rem; }
+    .studio-connection__body { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.85;max-width:62ch;margin-bottom:2.5rem; }
+    .studio-links { display:flex;gap:1rem;flex-wrap:wrap; }
+    .studio-link { display:inline-flex;align-items:center;gap:0.5rem;font-family:'Jost',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.05em;text-decoration:none;border-radius:6px;padding:0.625rem 1.25rem;transition:all 200ms ease; }
+    .studio-link--primary { color:#F1EFE8;background:#085041;border:1px solid #085041; }
+    .studio-link--primary:hover { background:#1D9E75;border-color:#1D9E75;color:#0D1F1A; }
+    .studio-link--secondary { color:#AFA9EC;background:transparent;border:1px solid rgba(60,52,137,0.4); }
+    .studio-link--secondary:hover { background:rgba(60,52,137,0.15);border-color:#AFA9EC; }
+    .studio-link--tertiary { color:#F0997B;background:transparent;border:1px solid rgba(240,153,123,0.35); }
+    .studio-link--tertiary:hover { background:rgba(240,153,123,0.1);border-color:#F0997B; }
+    .studio-link::after { content:'→'; }
+
+    /* ── Contact nudge ── */
+    .contact-nudge { max-width:1100px;margin-inline:auto;padding:0 2rem 6rem; }
+    .contact-nudge__inner { background:rgba(8,80,65,0.08);border:1px solid rgba(29,158,117,0.15);border-radius:12px;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center; }
+    .contact-nudge__heading { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.625rem;display:block; }
+    .contact-nudge__text { font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:#C8C4B7;line-height:1.65;max-width:48ch; }
+    .btn-contact { display:inline-flex;align-items:center;gap:0.5rem;font-family:'Jost',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.05em;color:#F1EFE8;background:#085041;border:1px solid #085041;border-radius:6px;padding:0.625rem 1.375rem;text-decoration:none;white-space:nowrap;transition:all 200ms ease; }
+    .btn-contact:hover { background:#1D9E75;border-color:#1D9E75;color:#0D1F1A; }
+
+    /* ── Footer ── */
+    .site-footer { border-top:1px solid rgba(8,80,65,0.3);background:rgba(0,0,0,0.25); }
+    .site-footer__inner { max-width:1100px;margin-inline:auto;padding:2.5rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem; }
+    .footer-brand { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:#F1EFE8;margin-bottom:0.25rem; }
+    .footer-maker { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.75rem;display:block; }
+    .footer-copy { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880; }
+    .footer-series { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(138,136,128,0.4);margin-top:0.25rem;display:block; }
+    .footer-links { display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem; }
+    .footer-links a { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880;text-decoration:none;transition:color 150ms ease; }
+    .footer-links a:hover { color:#1D9E75; }
+
+    @media (max-width:860px) {
+      .about-hero { grid-template-columns:1fr;gap:3rem;padding-block:3rem 3rem; }
+      .about-hero__photo-wrap { flex-direction:row;align-items:center;gap:1.5rem;margin-bottom:0; }
+      .narrative__inner { grid-template-columns:1fr;gap:2rem; }
+      .narrative__label { position:static; }
+      .contact-nudge__inner { grid-template-columns:1fr;gap:1.5rem; }
+    }
+    @media (max-width:600px) {
+      .about-hero,.identities,.narrative,.studio-connection,.contact-nudge { padding-inline:1.25rem; }
+      .site-nav__inner { padding-inline:1.25rem; }
+      .about-hero__photo { width:120px;height:120px; }
+      .identities__grid { grid-template-columns:1fr 1fr; }
+      .studio-links { flex-direction:column; }
+      .site-footer__inner { grid-template-columns:1fr; }
+      .footer-links { align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand">
+        <span class="site-nav__brand-name">Professor Q's Corner</span>
+        <span class="site-nav__brand-sub">Cognitive Sovereignty Studios</span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="thoughts.html">Thoughts</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="photos.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="about-hero">
+    <div>
+      <span class="about-hero__eyebrow">About Professor Q</span>
+      <h1 class="about-hero__title">A life<br>deliberately<br><em>lived.</em></h1>
+      <p class="about-hero__lead">
+        Captain. Cybersecurity director. Affiliate professor. Author. Artist. Husband. Father.
+        The through-line connecting all of it is a single insistence: that the examined life —
+        the one where you take genuine ownership of your thoughts, decisions, and the work that
+        follows from both — is the only kind worth living.
+      </p>
+      <span class="about-hero__tagline">
+        Cognitive Sovereignty Studios &nbsp;·&nbsp; Founder &amp; Maker
+      </span>
+    </div>
+    <div class="about-hero__photo-wrap">
+      <img
+        src="professor-q-photo.jpg"
+        alt="Professor Q — Ken Quigley, academic, artist, veteran, author"
+        class="about-hero__photo"
+      >
+      <div>
+        <div class="about-hero__photo-name">Ken Quigley</div>
+        <div class="about-hero__photo-alias">Professor Q</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ IDENTITY CARDS ═══ -->
+  <section class="identities" aria-label="Identities and roles">
+    <span class="identities__eyebrow">The Many Faces of Professor Q</span>
+    <div class="identities__grid">
+
+      <div class="id-card id-card--military">
+        <span class="id-card__label">Military</span>
+        <div class="id-card__title">Captain, US Army</div>
+        <div class="id-card__detail">Field Artillery &nbsp;·&nbsp; Commissioned officer &nbsp;·&nbsp; The precision of command, applied to everything that followed</div>
+      </div>
+
+      <div class="id-card id-card--cyber">
+        <span class="id-card__label">Cybersecurity</span>
+        <div class="id-card__title">Director, IT Cybersecurity</div>
+        <div class="id-card__detail">BEWS &nbsp;·&nbsp; Affiliate Professor of Cybersecurity, Regis University &nbsp;·&nbsp; 20+ years securing systems and developing leaders</div>
+      </div>
+
+      <div class="id-card id-card--academic">
+        <span class="id-card__label">Academic</span>
+        <div class="id-card__title">Affiliate Professor</div>
+        <div class="id-card__detail">Regis University &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Teaching the next generation of security professionals to think, not just execute</div>
+      </div>
+
+      <div class="id-card id-card--author">
+        <span class="id-card__label">Author</span>
+        <div class="id-card__title">Essays &amp; Manifesto</div>
+        <div class="id-card__detail">Cognitive Sovereignty, Gen Z, inclusive leadership &nbsp;·&nbsp; Writing that refuses the comfortable conclusion</div>
+      </div>
+
+      <div class="id-card id-card--artist">
+        <span class="id-card__label">Artist</span>
+        <div class="id-card__title">Founder, CSS</div>
+        <div class="id-card__detail">Cognitive Sovereignty Studios &nbsp;·&nbsp; Checkmate Curiosities &nbsp;·&nbsp; Traveling Drakes &nbsp;·&nbsp; All works one of a kind</div>
+      </div>
+
+      <div class="id-card id-card--community">
+        <span class="id-card__label">Community</span>
+        <div class="id-card__title">Husband &amp; Father</div>
+        <div class="id-card__detail">Colorado &nbsp;·&nbsp; Former founder of Colorado's largest non-profit haunted house &nbsp;·&nbsp; Committed to the people around him</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ NARRATIVE: THE SOLDIER ═══ -->
+  <section class="narrative" aria-labelledby="narrative-military">
+    <div class="narrative__inner">
+      <div class="narrative__label" id="narrative-military">The Soldier</div>
+      <div class="narrative__body">
+        <h2>Field artillery teaches you that there is no approximate.</h2>
+        <p>You calculate the trajectory, account for every variable, and commit to the decision. The shell follows physics — not intention, not effort, not good faith. Physics. Either the calculation was right or it wasn't. There is no partial credit in field artillery, and there is no taking the round back once it leaves the tube.</p>
+        <p>That discipline — the insistence on precision, the willingness to own the outcome, the recognition that decisions have consequences that cannot be undone — is the foundation of everything that came after. It is in every essay written, every cybersecurity framework built, every chess piece painted. The canvas is different each time. The standard of deliberateness is not.</p>
+        <div class="pull-quote">
+          <p>The round either hits or it doesn't. You either thought it through or you didn't. The willingness to be accountable to that fact is the beginning of cognitive sovereignty.</p>
+        </div>
+        <p>Service also teaches you something subtler: that the people to your left and right are counting on you to think clearly, especially when circumstances make thinking clearly difficult. That responsibility — to the mission and to the people beside you — never leaves. It just finds new theaters of operation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NARRATIVE: THE PROFESSIONAL ═══ -->
+  <section class="narrative" aria-labelledby="narrative-cyber">
+    <div class="narrative__inner">
+      <div class="narrative__label" id="narrative-cyber">The Professional</div>
+      <div class="narrative__body">
+        <h2>Cybersecurity is the field artillery of the digital age.</h2>
+        <p>The adversary does not announce their intentions. The threat surface is never fully mapped. The consequences of a miscalculation are real, expensive, and sometimes irreversible. You build your defenses with the information available, you train your people to think rather than just execute, and you accept that the work is never finished — only continuously improved.</p>
+        <p>Over two decades in cybersecurity leadership — across Fortune 100 environments, federal contractors, and the classroom at Regis University — the consistent lesson has been the same one field artillery teaches: <strong>the quality of the thinking determines the quality of the outcome.</strong> Tools change. Threat actors evolve. The requirement to think clearly, question assumptions, and take genuine ownership of your analysis does not.</p>
+        <p>Teaching cybersecurity at the affiliate professor level adds a dimension that pure practice cannot: the obligation to make the thinking explicit, to surface the reasoning behind the decision, to transfer not just knowledge but judgment. That obligation sharpens your own thinking in ways that professional practice alone never quite achieves.</p>
+        <p>The essay "Beyond Good Intentions" — co-authored with Deborah Barnes — came directly from this professional world: the recognition that homogeneous security teams are not just ethically incomplete but operationally vulnerable. Inclusion is not a social good grafted onto a technical discipline. It is a security imperative. Homogeneous teams create predictable defensive patterns. Sophisticated adversaries count on that predictability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NARRATIVE: THE THINKER ═══ -->
+  <section class="narrative" aria-labelledby="narrative-author">
+    <div class="narrative__inner">
+      <div class="narrative__label" id="narrative-author">The Thinker</div>
+      <div class="narrative__body">
+        <h2>Cognitive sovereignty is not a brand concept.</h2>
+        <p>It emerged from a genuine unease — the observation that people were increasingly outsourcing not just tasks but judgment to systems designed to make them predictable rather than capable. The Google effect on memory. The algorithmic curation of reality. The robo-advisor replacing human judgment on decisions that carry moral weight. The gradual, comfortable atrophy of the cognitive muscles that make us irreducibly human.</p>
+        <p>The manifesto that carries the name "Cognitive Sovereignty" argues that the choice is not whether to engage with artificial intelligence — that choice was made for all of us before we were asked. The choice is whether to engage consciously: as a participant who brings judgment, creativity, and moral reasoning to the collaboration, or as a subject who receives algorithmically curated conclusions and calls them thoughts.</p>
+        <div class="pull-quote">
+          <p>We are not observers of the AI transformation. We are embedded participants. The illusion that we can opt out is perhaps the most dangerous delusion of our time.</p>
+        </div>
+        <p>The Gen Z paper — co-authored with Kacie Quigley — applies the same lens to a generational question. What looks like nihilism is better understood through Nietzsche: not the rejection of meaning, but the collapse of inherited meaning systems that demands the construction of new ones. We built the ladder to the American Dream. The ground beneath it shifted. That is not a judgment about Gen Z's character. It is a reckoning with our own legacy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NARRATIVE: THE ARTIST ═══ -->
+  <section class="narrative" aria-labelledby="narrative-artist">
+    <div class="narrative__inner">
+      <div class="narrative__label" id="narrative-artist">The Artist</div>
+      <div class="narrative__body">
+        <h2>The non-sequitur is not an accident. It is the point.</h2>
+        <p>Frankenstein as a chess king. Elvira as a queen — and did you know Elvira is from Colorado? Glow-in-the-dark gnome pawns. A rubber duck carrying an artist's paintbrush across an ocean liner, heading somewhere neither the duck nor its maker will ever know. These combinations do not happen despite the precision demanded by field artillery and cybersecurity. They happen because of it.</p>
+        <p>Cognitive sovereignty requires the freedom to arrive somewhere no straight line would take you. The knight is the most honest piece on the chess board — it moves in two directions at once, it jumps over obstacles, and it arrives somewhere no one anticipated. That is not a flaw in the piece's design. It is the piece's entire value.</p>
+        <p>Every object produced under the Cognitive Sovereignty Studios mark begins as a blank 3D-printed PLA form — raw material, full of potential, committed to nothing. What it becomes is decided once, by one hand, at one moment, and never repeated. The singularity is not a marketing claim. It is the foundational condition of the work. To paint a second Violet Sage would be to deny that the first one was complete.</p>
+        <p>Cognitive Sovereignty Studios currently runs three divisions: <strong>Checkmate Curiosities</strong> for the chess sets, <strong>Traveling Drakes</strong> for the hand-painted cruise and jeep ducks, and <strong>The Analog Years</strong> — a forthcoming division of hand-painted 70s and 80s scenes in a Rockwellian vein — waiting for the work that will fill it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NARRATIVE: THE PERSON ═══ -->
+  <section class="narrative" aria-labelledby="narrative-person">
+    <div class="narrative__inner">
+      <div class="narrative__label" id="narrative-person">The Person</div>
+      <div class="narrative__body">
+        <h2>Colorado. Family. The examined life, lived in public.</h2>
+        <p>The work happens in Colorado — the same state that produced Elvira, the Denver Broncos, and what was for several years the largest non-profit haunted house in the state. That last item is Professor Q's. Building and running a large-scale community haunted house requires the same skill set as field artillery and cybersecurity: logistics, leadership, precision under pressure, and the absolute refusal to let the experience be mediocre for the people who show up expecting something real.</p>
+        <p>The family is the context that makes all of it make sense. A husband. A father. Someone who co-authors papers with his daughter about the generation she belongs to and the world her parents' generation handed her. The collaboration with Kacie Quigley on the Gen Z essay is not a professional exercise. It is a father trying to understand his daughter's world with the same rigor he brings to everything else — and being honest enough to admit, in print, that his first instinct was wrong.</p>
+        <div class="pull-quote">
+          <p>The examined life is not a comfortable life. It is a more honest one. And honesty, it turns out, is the prerequisite for everything worth doing.</p>
+        </div>
+        <p>This corner of the internet — Professor Q's Corner — is where all of it lives together. The essays, the chess sets, the ducks, the thoughts, the rants that haven't been written yet. It is not a portfolio. It is not a personal brand in the modern sense. It is a record of a mind in motion, taking ownership of its conclusions, and inviting anyone who finds it interesting to engage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STUDIO CONNECTION ═══ -->
+  <section class="studio-connection" aria-labelledby="studio-heading">
+    <span class="studio-connection__eyebrow">The Studio</span>
+    <h2 class="studio-connection__title" id="studio-heading">Cognitive Sovereignty Studios</h2>
+    <p class="studio-connection__body">
+      The studio exists at the intersection of precision and imagination — the same intersection where field artillery meets non-sequitur chess pieces, where cybersecurity meets hand-painted rubber ducks, where a manifesto about AI meets a glow-in-the-dark gnome pawn. Three divisions, one maker's mark, and the absolute commitment that every object produced here will be singular.
+    </p>
+    <div class="studio-links">
+      <a href="studio.html" class="studio-link studio-link--primary">The Studio Story</a>
+      <a href="checkmate-curiosities.html" class="studio-link studio-link--secondary">Checkmate Curiosities</a>
+      <a href="traveling-drakes.html" class="studio-link studio-link--tertiary">Traveling Drakes</a>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT NUDGE ═══ -->
+  <section class="contact-nudge" aria-label="Contact invitation">
+    <div class="contact-nudge__inner">
+      <div>
+        <span class="contact-nudge__heading">Get in Touch</span>
+        <p class="contact-nudge__text">
+          For commissions, press inquiries, speaking or teaching engagements, or simply to continue a conversation that started somewhere on this site — the contact page is open.
+        </p>
+      </div>
+      <a href="contact.html" class="btn-contact">Contact Professor Q</a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-brand">Professor Q's Corner</div>
+        <span class="footer-maker">Cognitive Sovereignty Studios</span>
+        <div class="footer-copy">&copy; 2025 Professor Q's Corner. All rights reserved.</div>
+        <span class="footer-series">Part of the ongoing Cognitive Sovereignty series</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="thoughts.html">Thoughts</a>
+        <a href="about.html">About</a>
+        <a href="photos.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
