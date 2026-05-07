@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traveling Drakes · Cognitive Sovereignty Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css-brand.css">
+  <style>
+
+    /* ── Nav — coral accent ── */
+    .site-nav { position:sticky;top:0;z-index:100;background:rgba(9,22,18,0.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(240,153,123,0.2); }
+    .site-nav__inner { display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin-inline:auto;padding:0.875rem 2rem;gap:2rem; }
+    .site-nav__brand { text-decoration:none;display:flex;flex-direction:column;gap:2px; }
+    .site-nav__brand-name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:400;color:#F1EFE8;line-height:1.1;transition:color 150ms ease; }
+    .site-nav__brand:hover .site-nav__brand-name { color:#F0997B; }
+    .site-nav__brand-sub { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#F0997B; }
+    .site-nav__links { display:flex;align-items:center;gap:1.75rem;list-style:none;flex-wrap:wrap; }
+    .site-nav__links a { font-family:'Jost',sans-serif;font-size:0.8rem;letter-spacing:0.04em;color:#8A8880;text-decoration:none;padding-bottom:2px;position:relative;transition:color 150ms ease; }
+    .site-nav__links a::after { content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#F0997B;transition:width 250ms ease; }
+    .site-nav__links a:hover { color:#F1EFE8; }
+    .site-nav__links a:hover::after { width:100%; }
+
+    /* ── Hero ── */
+    .td-hero { max-width:1100px;margin-inline:auto;padding:5rem 2rem 4rem;display:grid;grid-template-columns:1fr 400px;gap:5rem;align-items:center; }
+    .td-hero__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.18em;text-transform:uppercase;color:#F0997B;margin-bottom:1rem;display:block; }
+    .td-hero__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:300;color:#F1EFE8;line-height:1.08;letter-spacing:-0.02em;margin-bottom:1rem; }
+    .td-hero__tagline { font-family:'Caveat',cursive;font-size:1.5rem;color:#F0997B;margin-bottom:1.5rem;display:block;line-height:1.3; }
+    .td-hero__desc { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.8;max-width:50ch;margin-bottom:2rem; }
+    .td-hero__actions { display:flex;gap:1rem;flex-wrap:wrap;align-items:center; }
+
+    .btn-primary { display:inline-flex;align-items:center;gap:0.5rem;font-family:'Jost',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.05em;color:#F1EFE8;background:#085041;border:1px solid #085041;border-radius:6px;padding:0.625rem 1.25rem;text-decoration:none;transition:all 200ms ease; }
+    .btn-primary:hover { background:#1D9E75;border-color:#1D9E75;color:#0D1F1A; }
+    .btn-etsy { display:inline-flex;align-items:center;gap:0.5rem;font-family:'Jost',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.05em;color:#F0997B;background:transparent;border:1px solid rgba(240,153,123,0.35);border-radius:6px;padding:0.625rem 1.25rem;text-decoration:none;transition:all 200ms ease; }
+    .btn-etsy:hover { background:rgba(240,153,123,0.1);border-color:#F0997B; }
+    .btn-etsy::before { content:'↗'; }
+
+    .td-hero__image-wrap { position:relative; }
+    .td-hero__image { width:100%;border-radius:12px;display:block;box-shadow:0 16px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(240,153,123,0.15); }
+    .td-hero__image-caption { font-family:'Caveat',cursive;font-size:0.9rem;color:rgba(240,153,123,0.5);text-align:center;margin-top:0.875rem;display:block; }
+
+    /* ── What is ducking ── */
+    .ducking-explainer { background:rgba(8,80,65,0.08);border-top:1px solid rgba(240,153,123,0.15);border-bottom:1px solid rgba(240,153,123,0.15); }
+    .ducking-explainer__inner { max-width:1100px;margin-inline:auto;padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start; }
+    .ducking-explainer__heading { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#F0997B;margin-bottom:1rem;display:block; }
+    .ducking-explainer__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;font-weight:300;color:#F1EFE8;line-height:1.2;margin-bottom:1.25rem; }
+    .ducking-explainer__body p { font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:#C8C4B7;line-height:1.8;margin-bottom:1rem; }
+    .ducking-explainer__body p:last-child { margin-bottom:0; }
+
+    /* Ducking steps */
+    .duck-steps { list-style:none;padding:0;display:flex;flex-direction:column;gap:1.125rem; }
+    .duck-step { display:flex;gap:1rem;align-items:flex-start; }
+    .duck-step__num { font-family:'Caveat',cursive;font-size:1.5rem;color:#F0997B;line-height:1;flex-shrink:0;width:2rem;padding-top:0.1rem; }
+    .duck-step__text { font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:#C8C4B7;line-height:1.65; }
+    .duck-step__text strong { color:#F1EFE8;font-weight:500; }
+
+    /* ── Drake philosophy ── */
+    .philosophy { max-width:1100px;margin-inline:auto;padding:4rem 2rem;border-top:1px solid rgba(240,153,123,0.12); }
+    .philosophy__inner { max-width:680px; }
+    .philosophy__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#F0997B;margin-bottom:1rem;display:block; }
+    .philosophy__quote { font-family:'Caveat',cursive;font-size:2rem;color:#F1EFE8;line-height:1.3;margin-bottom:1.5rem; }
+    .philosophy__body p { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.8;margin-bottom:1rem; }
+    .philosophy__sub { font-family:'Caveat',cursive;font-size:1.1rem;color:rgba(240,153,123,0.65);margin-top:1.5rem;display:block; }
+
+    /* ── Gallery ── */
+    .gallery { max-width:1100px;margin-inline:auto;padding:4rem 2rem 2rem;border-top:1px solid rgba(240,153,123,0.12); }
+    .gallery__heading-wrap { display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem; }
+    .gallery__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#F0997B;margin-bottom:0.625rem;display:block; }
+    .gallery__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;color:#F1EFE8;line-height:1.15; }
+    .gallery__count { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.14em;text-transform:uppercase;color:#8A8880; }
+
+    /* OOAK notice */
+    .ooak-notice { display:inline-flex;align-items:center;gap:0.5rem;background:rgba(213,90,48,0.08);border:1px solid rgba(240,153,123,0.2);border-radius:6px;padding:0.5rem 1rem;margin-bottom:2rem; }
+    .ooak-notice__dot { width:5px;height:5px;border-radius:50%;background:#F0997B;flex-shrink:0; }
+    .ooak-notice__text { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#F0997B; }
+
+    /* Duck grid */
+    .duck-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem; }
+
+    .duck-card { background:rgba(17,41,32,0.4);border:1px solid rgba(240,153,123,0.15);border-radius:10px;overflow:hidden;transition:transform 250ms ease,box-shadow 250ms ease,border-color 250ms ease; }
+    .duck-card:hover { transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.4);border-color:rgba(240,153,123,0.35); }
+
+    .duck-card__img-wrap { height:260px;overflow:hidden;background:rgba(8,30,22,0.7);position:relative; }
+    .duck-card__img-wrap img { width:100%;height:100%;object-fit:contain;transition:transform 400ms ease; }
+    .duck-card:hover .duck-card__img-wrap img { transform:scale(1.04); }
+
+    .duck-card__badge { position:absolute;top:0.625rem;right:0.625rem;font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.1em;text-transform:uppercase;color:#F1EFE8;background:rgba(213,90,48,0.8);backdrop-filter:blur(4px);padding:3px 8px;border-radius:4px;border:1px solid rgba(240,153,123,0.3); }
+
+    .duck-card__body { padding:1rem; }
+    .duck-card__name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-weight:400;color:#F1EFE8;margin-bottom:0.25rem;line-height:1.25; }
+    .duck-card__type { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.1em;text-transform:uppercase;color:#F0997B;margin-bottom:0.5rem;display:block; }
+    .duck-card__sign { font-family:'Caveat',cursive;font-size:1rem;color:#F0997B;display:block;line-height:1.35; }
+
+    /* ── The Brush ── */
+    .brush-note { max-width:1100px;margin-inline:auto;padding:3rem 2rem;border-top:1px solid rgba(240,153,123,0.12); }
+    .brush-note__inner { background:rgba(8,80,65,0.08);border:1px solid rgba(29,158,117,0.15);border-radius:12px;padding:2rem 2.5rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center; }
+    .brush-note__icon { font-size:2.5rem;line-height:1;flex-shrink:0; }
+    .brush-note__heading { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.625rem;display:block; }
+    .brush-note__text { font-family:'Jost',sans-serif;font-size:0.875rem;font-weight:300;color:#C8C4B7;line-height:1.7; }
+    .brush-note__text strong { color:#F1EFE8;font-weight:500; }
+
+    /* ── Provenance ── */
+    .provenance { max-width:1100px;margin-inline:auto;padding:3rem 2rem 6rem;border-top:1px solid rgba(240,153,123,0.12); }
+    .provenance__inner { background:rgba(8,80,65,0.06);border:1px solid rgba(240,153,123,0.15);border-radius:12px;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center; }
+    .provenance__heading { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:#F0997B;margin-bottom:0.75rem;display:block; }
+    .provenance__text { font-family:'Jost',sans-serif;font-size:0.875rem;font-weight:300;color:#C8C4B7;line-height:1.7;max-width:55ch; }
+    .provenance__mark { font-family:'Caveat',cursive;font-size:1rem;color:rgba(240,153,123,0.45);text-align:right;line-height:1.5; }
+
+    /* ── Footer ── */
+    .site-footer { border-top:1px solid rgba(240,153,123,0.15);background:rgba(0,0,0,0.25); }
+    .site-footer__inner { max-width:1100px;margin-inline:auto;padding:2.5rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem; }
+    .footer-brand { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:#F1EFE8;margin-bottom:0.25rem; }
+    .footer-maker { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#F0997B;margin-bottom:0.75rem;display:block; }
+    .footer-copy { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880; }
+    .footer-series { font-family:'Caveat',cursive;font-size:0.875rem;color:rgba(240,153,123,0.4);margin-top:0.25rem;display:block; }
+    .footer-links { display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem; }
+    .footer-links a { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880;text-decoration:none;transition:color 150ms ease; }
+    .footer-links a:hover { color:#F0997B; }
+
+    @media (max-width:860px) {
+      .td-hero { grid-template-columns:1fr;gap:3rem;padding-block:3rem 2.5rem; }
+      .td-hero__image-wrap { max-width:480px; }
+      .ducking-explainer__inner { grid-template-columns:1fr;gap:2.5rem; }
+      .provenance__inner { grid-template-columns:1fr; }
+      .provenance__mark { text-align:left; }
+    }
+    @media (max-width:600px) {
+      .td-hero,.ducking-explainer__inner,.philosophy,.gallery,.brush-note,.provenance { padding-inline:1.25rem; }
+      .site-nav__inner { padding-inline:1.25rem; }
+      .duck-grid { grid-template-columns:repeat(2,1fr);gap:0.75rem; }
+      .brush-note__inner { grid-template-columns:1fr;gap:1rem; }
+      .brush-note__icon { display:none; }
+      .site-footer__inner { grid-template-columns:1fr; }
+      .footer-links { align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand">
+        <span class="site-nav__brand-name">Professor Q's Corner</span>
+        <span class="site-nav__brand-sub">Cognitive Sovereignty Studios</span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="thoughts.html">Thoughts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="photos.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="td-hero">
+    <div>
+      <span class="td-hero__eyebrow">Division 02 · Duck Art · Cognitive Sovereignty Studios</span>
+      <h1 class="td-hero__title">Traveling<br>Drakes</h1>
+      <span class="td-hero__tagline">"Not all who waddle are lost."</span>
+      <p class="td-hero__desc">
+        Hand-painted cruise ducks and jeep ducks — each one a singular traveler painted
+        once, left for a stranger to find. Part of the ducking tradition: paint one with
+        intention, leave one with care, and wonder where it ends up. Left with intention.
+        Found by fortune.
+      </p>
+      <div class="td-hero__actions">
+        <a href="photos.html" class="btn-primary">View full gallery</a>
+        <a href="https://www.etsy.com" target="_blank" rel="noopener" class="btn-etsy">Shop on Etsy</a>
+      </div>
+    </div>
+    <div class="td-hero__image-wrap">
+      <img
+        src="images/TravelingDrakes.png"
+        alt="Traveling Drakes — a hand-painted duck at a crossroads carrying an artist's paintbrush as a walking stick with a bundle tied to it"
+        class="td-hero__image"
+      >
+      <span class="td-hero__image-caption">"Anywhere with Independent Thought"</span>
+    </div>
+  </header>
+
+  <!-- ═══ WHAT IS DUCKING ═══ -->
+  <section class="ducking-explainer" aria-labelledby="ducking-heading">
+    <div class="ducking-explainer__inner">
+      <div>
+        <span class="ducking-explainer__heading" id="ducking-heading">What is Ducking?</span>
+        <h2 class="ducking-explainer__title">A tradition of anonymous generosity and deliberate surprise.</h2>
+        <div class="ducking-explainer__body">
+          <p>Ducking is a community tradition that started in jeep culture and spread to cruise ships, trail runs, and anywhere people gather and move. The idea is simple: paint or decorate a small rubber duck, leave it somewhere for a stranger to find, and let it travel on without you.</p>
+          <p>Finding a duck is a small, unexpected moment of joy — the kind that reminds you that someone, somewhere, was thinking about a stranger's day. Traveling Drakes are hand-painted originals that take that tradition and elevate it: each duck is a singular work of art, painted once, never repeated.</p>
+        </div>
+      </div>
+      <div>
+        <span class="ducking-explainer__heading">How It Works</span>
+        <ul class="duck-steps">
+          <li class="duck-step">
+            <span class="duck-step__num">1</span>
+            <span class="duck-step__text"><strong>A drake is painted.</strong> One hand, one session, one decision about color and character. No two are alike — each duck has its own personality that emerged during the painting process.</span>
+          </li>
+          <li class="duck-step">
+            <span class="duck-step__num">2</span>
+            <span class="duck-step__text"><strong>The drake is placed.</strong> On a jeep door handle. On a cruise ship railing. Tucked into a hiking trail marker. Left somewhere a stranger will find it and wonder.</span>
+          </li>
+          <li class="duck-step">
+            <span class="duck-step__num">3</span>
+            <span class="duck-step__text"><strong>The drake travels on.</strong> Some finders keep them. Some pass them along. Some photograph them and share them. The drake's journey continues without its maker — independent thought, independent flight.</span>
+          </li>
+          <li class="duck-step">
+            <span class="duck-step__num">4</span>
+            <span class="duck-step__text"><strong>The maker wonders.</strong> That uncertainty is the point. You painted something with care, released it into the world, and let go. Cognitive sovereignty applied to generosity.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PHILOSOPHY ═══ -->
+  <section class="philosophy" aria-label="Division philosophy">
+    <div class="philosophy__inner">
+      <span class="philosophy__eyebrow">The Drake Philosophy</span>
+      <div class="philosophy__quote">"Not all who waddle are lost."</div>
+      <div class="philosophy__body">
+        <p>The name Traveling Drakes carries a deliberate literary nod. Tolkien's "not all who wander are lost" speaks to the person who moves through the world with purpose even when that purpose isn't visible to others. The drake version applies that same dignity to a rubber duck on a jeep hood.</p>
+        <p>These ducks go somewhere. They don't know where — and that's precisely the philosophy. The maker exercises cognitive sovereignty in the act of creation and the act of release. The rest belongs to the road, the finder, and whatever happens next.</p>
+        <p>The paintbrush the drake carries as a walking stick is not accidental. It is the same brush that appears in the Cognitive Sovereignty Studios parent image, the same brush that lies across the empty chess board in Checkmate Curiosities. One maker. One instrument. Everywhere it goes, it leaves something singular behind.</p>
+      </div>
+      <span class="philosophy__sub">"Left with intention. Found by fortune."</span>
+    </div>
+  </section>
+
+  <!-- ═══ GALLERY ═══ -->
+  <section class="gallery" aria-labelledby="gallery-heading">
+    <div class="gallery__heading-wrap">
+      <div>
+        <span class="gallery__eyebrow">The Drakes</span>
+        <h2 class="gallery__title" id="gallery-heading">Current Flock</h2>
+      </div>
+      <span class="gallery__count">Each one unique · One of a kind</span>
+    </div>
+
+    <div class="ooak-notice">
+      <div class="ooak-notice__dot"></div>
+      <span class="ooak-notice__text">Traveling Drakes · Every duck hand-painted · Left with intention, found by fortune</span>
+    </div>
+
+    <div class="duck-grid">
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck1.jpeg" alt="Traveling Drake No. 1 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 1</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 1</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Anywhere with Independent Thought"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck2.jpeg" alt="Traveling Drake No. 2 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 2</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 2</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Freedom or Bust"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck3.jpeg" alt="Traveling Drake No. 3 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 3</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 3</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Not All Who Waddle Are Lost"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck4.jpeg" alt="Traveling Drake No. 4 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 4</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 4</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Open Water, Open Mind"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck5.jpeg" alt="Traveling Drake No. 5 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 5</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 5</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Left with Intention, Found by Fortune"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck6.jpeg" alt="Traveling Drake No. 6 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 6</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 6</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Catch Me If You Can"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck7.jpeg" alt="Traveling Drake No. 7 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 7</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 7</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Anywhere But Here"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck8.jpeg" alt="Traveling Drake No. 8 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 8</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 8</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Toward Something Worth Finding"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck9.jpeg" alt="Traveling Drake No. 9 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 9</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 9</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"The Road Decides"</span>
+        </div>
+      </div>
+
+      <div class="duck-card">
+        <div class="duck-card__img-wrap">
+          <img src="images/Duck10.jpeg" alt="Traveling Drake No. 10 — hand-painted cruise duck" loading="lazy">
+          <span class="duck-card__badge">Drake No. 10</span>
+        </div>
+        <div class="duck-card__body">
+          <div class="duck-card__name">Traveling Drake No. 10</div>
+          <span class="duck-card__type">Cruise Duck · One of a Kind</span>
+          <span class="duck-card__sign">"Independent Thought, Independent Flight"</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ THE BRUSH NOTE ═══ -->
+  <section class="brush-note" aria-label="The paintbrush connection">
+    <div class="brush-note__inner">
+      <div class="brush-note__icon">🖌️</div>
+      <div>
+        <span class="brush-note__heading">The Paintbrush Connection</span>
+        <p class="brush-note__text">
+          Every Traveling Drake carries its bundle on <strong>an artist's paintbrush used as a walking stick</strong> — bristle end up, handle resting on the wing, dried paint visible on the ferrule. This is the same brush that appears in the Cognitive Sovereignty Studios parent image, poised above an unpainted chess piece, and in Checkmate Curiosities, laid diagonally across an empty board. One studio. One maker. One instrument. Three worlds built from a single act of reaching for the brush and deciding to begin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROVENANCE ═══ -->
+  <section class="provenance">
+    <div class="provenance__inner">
+      <div>
+        <span class="provenance__heading">Every Drake Is One of a Kind</span>
+        <p class="provenance__text">
+          Each Traveling Drake is painted once in a single session — the color decisions, the character details, the expression — all made in the moment and never repeated. Future drakes may share a theme but will never share the same paint scheme or the same character. You are not buying a product. You are acquiring a singular object that will go somewhere and do something and belong to a story you will never fully know.
+        </p>
+      </div>
+      <div class="provenance__mark">
+        Traveling Drakes<br>
+        Cognitive Sovereignty Studios<br>
+        Division 02 · Duck Art
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-brand">Traveling Drakes</div>
+        <span class="footer-maker">Cognitive Sovereignty Studios · Division 02</span>
+        <div class="footer-copy">&copy; 2025 Professor Q's Corner. All rights reserved.</div>
+        <span class="footer-series">"Not all who waddle are lost."</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="studio.html">The Studio</a>
+        <a href="checkmate-curiosities.html">Checkmate Curiosities</a>
+        <a href="photos.html">Gallery</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

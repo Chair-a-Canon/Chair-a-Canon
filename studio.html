@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Studio · Cognitive Sovereignty Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css-brand.css">
+  <style>
+
+    /* ── Nav ── */
+    .site-nav { position:sticky;top:0;z-index:100;background:rgba(9,22,18,0.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(8,80,65,0.35); }
+    .site-nav__inner { display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin-inline:auto;padding:0.875rem 2rem;gap:2rem; }
+    .site-nav__brand { text-decoration:none;display:flex;flex-direction:column;gap:2px; }
+    .site-nav__brand-name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:400;color:#F1EFE8;line-height:1.1;transition:color 150ms ease; }
+    .site-nav__brand:hover .site-nav__brand-name { color:#5DCAA5; }
+    .site-nav__brand-sub { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75; }
+    .site-nav__links { display:flex;align-items:center;gap:1.75rem;list-style:none;flex-wrap:wrap; }
+    .site-nav__links a { font-family:'Jost',sans-serif;font-size:0.8rem;letter-spacing:0.04em;color:#8A8880;text-decoration:none;padding-bottom:2px;position:relative;transition:color 150ms ease; }
+    .site-nav__links a::after { content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#1D9E75;transition:width 250ms ease; }
+    .site-nav__links a:hover { color:#F1EFE8; }
+    .site-nav__links a:hover::after { width:100%; }
+
+    /* ── Hero ── */
+    .studio-hero { max-width:1100px;margin-inline:auto;padding:5rem 2rem 4rem;display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center; }
+    .studio-hero__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.18em;text-transform:uppercase;color:#1D9E75;margin-bottom:1rem;display:block; }
+    .studio-hero__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:300;color:#F1EFE8;line-height:1.08;letter-spacing:-0.02em;margin-bottom:1rem; }
+    .studio-hero__title em { font-style:italic;color:#5DCAA5; }
+    .studio-hero__tagline { font-family:'Cinzel',Georgia,serif;font-size:0.625rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:1.5rem;display:block; }
+    .studio-hero__desc { font-family:'Jost',sans-serif;font-size:1rem;font-weight:300;color:#C8C4B7;line-height:1.8;max-width:52ch; }
+
+    /* Brand image */
+    .studio-hero__image-wrap { position:relative; }
+    .studio-hero__image { width:100%;border-radius:12px;display:block;box-shadow:0 16px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(29,158,117,0.15); }
+    .studio-hero__image-caption { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(138,136,128,0.5);text-align:center;margin-top:0.875rem;display:block; }
+
+    /* ── Philosophy section ── */
+    .philosophy { max-width:1100px;margin-inline:auto;padding:5rem 2rem;border-top:1px solid rgba(93,202,165,0.12); }
+    .philosophy__inner { display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start; }
+    .philosophy__heading { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:1.25rem;display:block; }
+    .philosophy__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;color:#F1EFE8;line-height:1.15;margin-bottom:1.5rem; }
+    .philosophy__body p { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.8;margin-bottom:1.125rem; }
+    .philosophy__body p:last-child { margin-bottom:0; }
+
+    /* Principles list */
+    .principles { list-style:none;padding:0;display:flex;flex-direction:column;gap:1.25rem; }
+    .principle { display:flex;gap:1rem;align-items:flex-start; }
+    .principle__num { font-family:'Cinzel',Georgia,serif;font-size:0.5rem;letter-spacing:0.1em;color:#1D9E75;padding-top:0.2rem;flex-shrink:0;width:1.5rem; }
+    .principle__text { font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:#C8C4B7;line-height:1.65; }
+    .principle__text strong { color:#F1EFE8;font-weight:500; }
+
+    /* ── Maker section ── */
+    .maker { max-width:1100px;margin-inline:auto;padding:5rem 2rem;border-top:1px solid rgba(93,202,165,0.12); }
+    .maker__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:1.25rem;display:block; }
+    .maker__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;color:#F1EFE8;line-height:1.12;margin-bottom:2.5rem; }
+    .maker__grid { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
+    .maker__card { background:rgba(17,41,32,0.5);border:1px solid rgba(8,80,65,0.35);border-radius:10px;padding:1.5rem; }
+    .maker__card-label { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.14em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.625rem;display:block; }
+    .maker__card-value { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;font-weight:400;color:#F1EFE8;line-height:1.3; }
+    .maker__body { margin-top:3rem; }
+    .maker__body p { font-family:'Jost',sans-serif;font-size:0.9375rem;font-weight:300;color:#C8C4B7;line-height:1.8;margin-bottom:1.125rem;max-width:68ch; }
+
+    /* Maker's mark box */
+    .makers-mark { display:inline-flex;align-items:center;gap:0.875rem;background:rgba(8,80,65,0.15);border:1px solid rgba(29,158,117,0.2);border-radius:8px;padding:1rem 1.5rem;margin-top:2rem; }
+    .makers-mark__dot { width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0; }
+    .makers-mark__text { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.14em;text-transform:uppercase;color:#1D9E75; }
+
+    /* ── Divisions section ── */
+    .divisions { max-width:1100px;margin-inline:auto;padding:5rem 2rem 7rem;border-top:1px solid rgba(93,202,165,0.12); }
+    .divisions__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.5625rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.75rem;display:block; }
+    .divisions__title { font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;color:#F1EFE8;line-height:1.15;margin-bottom:2.5rem; }
+    .divisions__grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem; }
+
+    .div-card { background:rgba(17,41,32,0.5);border:1px solid rgba(8,80,65,0.35);border-radius:14px;overflow:hidden;text-decoration:none;display:block;transition:transform 250ms ease,box-shadow 250ms ease,border-color 250ms ease;position:relative; }
+    .div-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent,#1D9E75);transition:height 200ms ease; }
+    .div-card:hover { transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,0.45);border-color:rgba(255,255,255,0.08); }
+    .div-card:hover::before { height:4px; }
+    .div-card--checkmate { --accent:#3C3489; }
+    .div-card--drakes { --accent:#1D9E75; }
+
+    .div-card__img-wrap { aspect-ratio:16/9;overflow:hidden;background:rgba(8,30,22,0.8); }
+    .div-card__img-wrap img { width:100%;height:100%;object-fit:cover;transition:transform 400ms ease; }
+    .div-card:hover .div-card__img-wrap img { transform:scale(1.04); }
+
+    .div-card__body { padding:1.5rem; }
+    .div-card__eyebrow { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.14em;text-transform:uppercase;color:#8A8880;margin-bottom:0.625rem;display:block; }
+    .div-card__name { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:400;color:#F1EFE8;margin-bottom:0.5rem;line-height:1.2; }
+    .div-card__tagline { font-family:'Jost',sans-serif;font-size:0.8125rem;font-weight:300;color:#8A8880;line-height:1.55;margin-bottom:1.25rem; }
+    .div-card__cta { font-family:'Jost',sans-serif;font-size:0.6875rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1D9E75;display:inline-flex;align-items:center;gap:0.375rem;transition:gap 150ms ease; }
+    .div-card--checkmate .div-card__cta { color:#AFA9EC; }
+    .div-card__cta::after { content:'→'; }
+    .div-card:hover .div-card__cta { gap:0.625rem; }
+
+    /* ── Footer ── */
+    .site-footer { border-top:1px solid rgba(8,80,65,0.3);background:rgba(0,0,0,0.25); }
+    .site-footer__inner { max-width:1100px;margin-inline:auto;padding:2.5rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem; }
+    .footer-brand { font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:#F1EFE8;margin-bottom:0.25rem; }
+    .footer-maker { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.16em;text-transform:uppercase;color:#1D9E75;margin-bottom:0.75rem;display:block; }
+    .footer-copy { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880; }
+    .footer-series { font-family:'Cinzel',Georgia,serif;font-size:0.4375rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(138,136,128,0.4);margin-top:0.25rem;display:block; }
+    .footer-links { display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem; }
+    .footer-links a { font-family:'Jost',sans-serif;font-size:0.75rem;color:#8A8880;text-decoration:none;transition:color 150ms ease; }
+    .footer-links a:hover { color:#1D9E75; }
+
+    @media (max-width:860px) {
+      .studio-hero { grid-template-columns:1fr;gap:3rem;padding-block:3rem 2.5rem; }
+      .studio-hero__image-wrap { max-width:480px; }
+      .philosophy__inner { grid-template-columns:1fr;gap:3rem; }
+      .maker__grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:600px) {
+      .studio-hero,.philosophy,.maker,.divisions { padding-inline:1.25rem; }
+      .site-nav__inner { padding-inline:1.25rem; }
+      .maker__grid { grid-template-columns:1fr; }
+      .site-footer__inner { grid-template-columns:1fr; }
+      .footer-links { align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand">
+        <span class="site-nav__brand-name">Professor Q's Corner</span>
+        <span class="site-nav__brand-sub">Cognitive Sovereignty Studios</span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="thoughts.html">Thoughts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="photos.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="studio-hero">
+    <div>
+      <span class="studio-hero__eyebrow">The Parent Studio</span>
+      <h1 class="studio-hero__title">Cognitive<br>Sovereignty<br><em>Studios</em></h1>
+      <span class="studio-hero__tagline">Thought made tangible &nbsp;·&nbsp; Never made twice</span>
+      <p class="studio-hero__desc">
+        Where discipline meets imagination. The studio of a Captain who paints bishops, a
+        cybersecurity director who makes glow-in-the-dark pawns, a professor who names a
+        chess piece "Please don't call me Rose." Every object produced here is singular —
+        conceived once, executed once, never repeated.
+      </p>
+    </div>
+    <div class="studio-hero__image-wrap">
+      <img
+        src="images/CognitiveSovereignty.png"
+        alt="Cognitive Sovereignty Studios — a hand holding a paintbrush poised above an unpainted chess piece"
+        class="studio-hero__image"
+      >
+      <span class="studio-hero__image-caption">The Independent Hand · CSS Brand Image</span>
+    </div>
+  </header>
+
+  <!-- ═══ PHILOSOPHY ═══ -->
+  <section class="philosophy" aria-labelledby="philosophy-heading">
+    <div class="philosophy__inner">
+      <div>
+        <span class="philosophy__heading" id="philosophy-heading">The Philosophy</span>
+        <h2 class="philosophy__title">Independence of thought. Ownership of mind. Responsibility for decisions.</h2>
+        <div class="philosophy__body">
+          <p>Cognitive sovereignty is not a brand concept — it is a way of living. It is the deliberate choice to examine your assumptions, question your inherited frameworks, and take genuine ownership of the conclusions you reach. It is the refusal to outsource your judgment to algorithmic convenience, institutional authority, or received wisdom.</p>
+          <p>Every object produced under this mark is an act of cognitive sovereignty: a decision made by one mind, executed by one hand, that will never be made again in precisely the same way. The blank piece is potential. The brush is the decision. The finished object is proof that the decision was made.</p>
+          <p>This is not a craft shop. It is an atelier. The difference is not in the objects — it is in the intention behind them.</p>
+        </div>
+      </div>
+      <div>
+        <span class="philosophy__heading">The Principles</span>
+        <ul class="principles">
+          <li class="principle">
+            <span class="principle__num">I</span>
+            <span class="principle__text"><strong>One of a kind is absolute.</strong> No piece is ever repeated. Future work in the same theme will use different figures, different paint schemes, different decisions. The singularity of each object is not a marketing claim — it is the foundational promise.</span>
+          </li>
+          <li class="principle">
+            <span class="principle__num">II</span>
+            <span class="principle__text"><strong>The brush is the connective thread.</strong> The same artist's paintbrush appears across every division — poised above the chess piece, laid across the empty board, carried by the traveling drake. One maker. One instrument. Three worlds.</span>
+          </li>
+          <li class="principle">
+            <span class="principle__num">III</span>
+            <span class="principle__text"><strong>Premium positioning is earned.</strong> CSS is an art studio, not a craft shop. Every object produced here is gallery-grade in its intention, even when its subject is a glowing gnome pawn or a rubber duck on a cruise ship.</span>
+          </li>
+          <li class="principle">
+            <span class="principle__num">IV</span>
+            <span class="principle__text"><strong>The non-sequitur is deliberate.</strong> Frankenstein as a chess king. A gnome pawn that glows in the dark. A duck carrying a paintbrush to places unknown. The unexpected combination is not a gimmick — it is the point. Cognitive sovereignty requires the freedom to arrive somewhere no straight line would take you.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE MAKER ═══ -->
+  <section class="maker" aria-labelledby="maker-heading">
+    <span class="maker__eyebrow">The Maker</span>
+    <h2 class="maker__title" id="maker-heading">A life deliberately and precisely lived.</h2>
+    <div class="maker__grid">
+      <div class="maker__card">
+        <span class="maker__card-label">Military</span>
+        <div class="maker__card-value">Captain, US Army<br>Field Artillery</div>
+      </div>
+      <div class="maker__card">
+        <span class="maker__card-label">Cybersecurity</span>
+        <div class="maker__card-value">Director, IT Cybersecurity<br>Affiliate Professor, Regis University</div>
+      </div>
+      <div class="maker__card">
+        <span class="maker__card-label">Author</span>
+        <div class="maker__card-value">Essays on AI, consciousness,<br>leadership, and Gen Z</div>
+      </div>
+      <div class="maker__card">
+        <span class="maker__card-label">Artist</span>
+        <div class="maker__card-value">Hand-painted originals<br>Three divisions, one studio</div>
+      </div>
+    </div>
+    <div class="maker__body">
+      <p>Field artillery demands precision — the kind that cannot be approximated. You calculate the trajectory, account for the variables, and commit to the decision. There is no room for the vague or the approximate. That same discipline lives in every object produced under this mark. The piece is either finished or it is not. The decision was made deliberately or it was not. There is no in-between.</p>
+      <p>What field artillery shares with non-sequitur art is the willingness to arrive somewhere unexpected via a path no one anticipated. The shell follows physics. The painted gnome follows imagination. Both require the maker to fully commit to a trajectory and see it through.</p>
+      <p>Cognitive Sovereignty Studios exists in the space between those two imperatives — precision and imagination, discipline and freedom, the soldier and the artist. Neither alone is sufficient. Together, they produce objects that could only have come from this particular mind, this particular hand, at this particular moment.</p>
+    </div>
+    <div class="makers-mark">
+      <div class="makers-mark__dot"></div>
+      <span class="makers-mark__text">Cognitive Sovereignty Studios &nbsp;·&nbsp; All works one of a kind &nbsp;·&nbsp; Never the same twice</span>
+    </div>
+  </section>
+
+  <!-- ═══ DIVISIONS ═══ -->
+  <section class="divisions" aria-labelledby="divisions-heading">
+    <span class="divisions__eyebrow">The Studio Divisions</span>
+    <h2 class="divisions__title" id="divisions-heading">Three worlds. One hand. One brush.</h2>
+    <div class="divisions__grid">
+
+      <a href="checkmate-curiosities.html" class="div-card div-card--checkmate">
+        <div class="div-card__img-wrap">
+          <img src="images/Checkmate_Curiosities.png" alt="Checkmate Curiosities — an empty teal and parchment chess board with a paintbrush laid diagonally across it" loading="lazy">
+        </div>
+        <div class="div-card__body">
+          <span class="div-card__eyebrow">Division 01 · Chess Art</span>
+          <div class="div-card__name">Checkmate Curiosities</div>
+          <p class="div-card__tagline">Hand-painted, one-of-a-kind chess sets where no two boards are ever the same. Non-sequitur characters. Singular worlds.</p>
+          <span class="div-card__cta">Explore the collection</span>
+        </div>
+      </a>
+
+      <a href="traveling-drakes.html" class="div-card div-card--drakes">
+        <div class="div-card__img-wrap">
+          <img src="images/TravelingDrakes.png" alt="Traveling Drakes — a hand-painted duck at a crossroads carrying a paintbrush as a walking stick" loading="lazy">
+        </div>
+        <div class="div-card__body">
+          <span class="div-card__eyebrow">Division 02 · Duck Art</span>
+          <div class="div-card__name">Traveling Drakes</div>
+          <p class="div-card__tagline">Hand-painted cruise and jeep ducks. Left with intention, found by fortune. Not all who waddle are lost.</p>
+          <span class="div-card__cta">Meet the drakes</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-brand">Professor Q's Corner</div>
+        <span class="footer-maker">Cognitive Sovereignty Studios</span>
+        <div class="footer-copy">&copy; 2025 Professor Q's Corner. All rights reserved.</div>
+        <span class="footer-series">Part of the ongoing Cognitive Sovereignty series</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="thoughts.html">Thoughts</a>
+        <a href="about.html">About</a>
+        <a href="photos.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
